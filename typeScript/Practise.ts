@@ -249,20 +249,21 @@
 
 */
 
-// function sumOfNums(firstNum, secondNum) {
+// function sumOfNums(firstNum, secondNum): number {
 //     if(typeof firstNum === 'string' || typeof secondNum === 'string') {
 //         throw new Error('Incorrect input!');
 //     }
 //     return firstNum + secondNum;
 // }
 
-// function addAndHandle(firstNum, secondNum, callback){
-//  return callback(firstNum, secondNum);
+// function addAndHandle(firstNum, secondNum, callback):object{
+//    return callback(sumOfNums(firstNum, secondNum)) ;
 // }
 
-// addAndHandle(10, 20, (sumOfNums) => {
-//     console.log(sumOfNums)
+// addAndHandle(10, 20, (result) => {
+//     console.log(result)
 // })
+
 /*  
         Задание 9
     ~ Написать функцию, с возвращаемым значением типа never
@@ -331,21 +332,48 @@
 // let tupleArr: [Array<number>, string];
 
 // function someFunc(tuple){
-    
+//     console.log(`${tuple[1]}${tuple[0].length}`)
 // }
+// tupleArr = [firstArr, 'first array length is: '];
+// someFunc(tupleArr);
 
+// tupleArr = [secondArr, 'second array length is: '];
+// someFunc(tupleArr);
 // someFunc(tupleArr[firstArr, 'message']);
+
 /*  
         Задание 13
     ~ Написать метод without, который будет принимать объект со свойствами разных типов и тип.
     ~ Метод without должен вернуть копию объекта, но уже без свойств переданного типа .
 */
 
-//Добавить код сюда...
+// let person = {
+//     name: 'John',
+//     age: 25,
+//     isSmart: false,
+//     skills: ['skill-1', 'skill-2'],
+// }
+
+// function without(obj: object, type){
+
+//     let newObj = {};
+
+//     for(let key in obj){
+//         if(typeof obj[key] === type){
+//           continue
+//         } else {
+//             newObj[key] = obj[key];
+//         }
+//     }
+//     return newObj;
+// }
+
+// console.log(without(person, 'boolean'));
+// console.log(without(person, 'object'))
 
 /*  
         Задание 14
     ~ Написать функцию isEmpty, которая проверяет пустой ли объект, независимо от его вложенности. Должен венуть true для объектов { a: { b: undefined }, { a: { b: [] } }, {}, { a: { b: [ { c: [] } ] } }
 */
 
-//Добавить код сюда...
+// ?

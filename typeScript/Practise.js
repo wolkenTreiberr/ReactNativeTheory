@@ -212,18 +212,18 @@
         })
 
 */
-// function sumOfNums(firstNum, secondNum) {
-//     if(typeof firstNum === 'string' || typeof secondNum === 'string') {
-//         throw new Error('Incorrect input!');
-//     }
-//     return firstNum + secondNum;
-// }
-// function addAndHandle(firstNum, secondNum, callback){
-//  return callback(firstNum, secondNum);
-// }
-// addAndHandle(10, 20, (sumOfNums) => {
-//     console.log(sumOfNums)
-// })
+function sumOfNums(firstNum, secondNum) {
+    if (typeof firstNum === 'string' || typeof secondNum === 'string') {
+        throw new Error('Incorrect input!');
+    }
+    return firstNum + secondNum;
+}
+function addAndHandle(firstNum, secondNum, callback) {
+    return callback(sumOfNums(firstNum, secondNum));
+}
+addAndHandle(10, 20, function (result) {
+    console.log(result);
+});
 /*
         Задание 9
     ~ Написать функцию, с возвращаемым значением типа never
@@ -255,36 +255,64 @@
     ~ Создай 5 строк с названием стран
     ~ Если в названии страны встречается буква А, выведи ее нзавание в консоль
 */
-var america = 'America';
-var africa = 'Africa';
-var ukraine = 'Ukraine';
-var belorus = 'Belorus';
-var canada = 'Canada';
-function isInclude(str) {
-    if (str.includes('A')) {
-        console.log(str);
-    }
-}
-isInclude(america);
-isInclude(africa);
-isInclude(ukraine);
-isInclude(belorus);
-isInclude(canada);
+// let america = 'America';
+// let africa = 'Africa';
+// let ukraine = 'Ukraine';
+// let belorus = 'Belorus';
+// let canada = 'Canada';
+// function isInclude(str){
+//     if(str.includes('A')){
+//         console.log(str)
+//     }
+// }
+// isInclude(america);
+// isInclude(africa);
+// isInclude(ukraine);
+// isInclude(belorus);
+// isInclude(canada);
 /*
         Задание 12
     ~ Объявить несколько массивов типа number и заполнить их разным количеством элементов.
     ~ Объявить Tuple в который можно передать любой из объявленных массивов и текстовое значение.
     ~ Создать функцию в качестве аргумента которой созданный Tuple. Вывести в консоль текстовое значение из Tuple и количество элементов массива цифр
 */
-//Добавить код сюда...
+// let firstArr: Array<number> = [1,2,3,4,5];
+// let secondArr: Array<number> = [1,2,3,4,5,6,7];
+// let tupleArr: [Array<number>, string];
+// function someFunc(tuple){
+//     console.log(`${tuple[1]}${tuple[0].length}`)
+// }
+// tupleArr = [firstArr, 'first array length is: '];
+// someFunc(tupleArr);
+// tupleArr = [secondArr, 'second array length is: '];
+// someFunc(tupleArr);
+// someFunc(tupleArr[firstArr, 'message']);
 /*
         Задание 13
     ~ Написать метод without, который будет принимать объект со свойствами разных типов и тип.
     ~ Метод without должен вернуть копию объекта, но уже без свойств переданного типа .
 */
-//Добавить код сюда...
+// let person = {
+//     name: 'John',
+//     age: 25,
+//     isSmart: false,
+//     skills: ['skill-1', 'skill-2'],
+// }
+// function without(obj: object, type){
+//     let newObj = {};
+//     for(let key in obj){
+//         if(typeof obj[key] === type){
+//           continue
+//         } else {
+//             newObj[key] = obj[key];
+//         }
+//     }
+//     return newObj;
+// }
+// console.log(without(person, 'boolean'));
+// console.log(without(person, 'object'))
 /*
         Задание 14
     ~ Написать функцию isEmpty, которая проверяет пустой ли объект, независимо от его вложенности. Должен венуть true для объектов { a: { b: undefined }, { a: { b: [] } }, {}, { a: { b: [ { c: [] } ] } }
 */
-//Добавить код сюда...
+// ?
