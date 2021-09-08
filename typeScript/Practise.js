@@ -66,6 +66,10 @@
 // //12 Object type
 // const someObj: object = {a: 1}
 // console.log(`someObj = ${someObj}`);
+//13 Never type
+// const neverEnds = function(): never {
+//     while (true) {}
+//   }
 /*
         Задание 2
     ~ Написать функцию принимающую в качестве аргументов два числа, которая возвращает их сумму
@@ -212,18 +216,18 @@
         })
 
 */
-function sumOfNums(firstNum, secondNum) {
-    if (typeof firstNum === 'string' || typeof secondNum === 'string') {
-        throw new Error('Incorrect input!');
-    }
-    return firstNum + secondNum;
-}
-function addAndHandle(firstNum, secondNum, callback) {
-    return callback(sumOfNums(firstNum, secondNum));
-}
-addAndHandle(10, 20, function (result) {
-    console.log(result);
-});
+// function sumOfNums(firstNum, secondNum): number {
+//     if(typeof firstNum === 'string' || typeof secondNum === 'string') {
+//         throw new Error('Incorrect input!');
+//     }
+//     return firstNum + secondNum;
+// }
+// function addAndHandle(firstNum, secondNum, callback):object{
+//    return callback(sumOfNums(firstNum, secondNum)) ;
+// }
+// addAndHandle(10, 20, (result) => {
+//     console.log(result)
+// })
 /*
         Задание 9
     ~ Написать функцию, с возвращаемым значением типа never
@@ -286,7 +290,6 @@ addAndHandle(10, 20, function (result) {
 // someFunc(tupleArr);
 // tupleArr = [secondArr, 'second array length is: '];
 // someFunc(tupleArr);
-// someFunc(tupleArr[firstArr, 'message']);
 /*
         Задание 13
     ~ Написать метод without, который будет принимать объект со свойствами разных типов и тип.

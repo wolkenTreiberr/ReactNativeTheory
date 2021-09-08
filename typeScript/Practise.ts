@@ -80,6 +80,11 @@
 // const someObj: object = {a: 1}
 // console.log(`someObj = ${someObj}`);
 
+//13 Never type
+// const neverEnds = function(): never {
+//     while (true) {}
+//   }
+
 /*  
         Задание 2 
     ~ Написать функцию принимающую в качестве аргументов два числа, которая возвращает их сумму
@@ -334,12 +339,13 @@
 // function someFunc(tuple){
 //     console.log(`${tuple[1]}${tuple[0].length}`)
 // }
+
 // tupleArr = [firstArr, 'first array length is: '];
 // someFunc(tupleArr);
 
 // tupleArr = [secondArr, 'second array length is: '];
 // someFunc(tupleArr);
-// someFunc(tupleArr[firstArr, 'message']);
+
 
 /*  
         Задание 13
