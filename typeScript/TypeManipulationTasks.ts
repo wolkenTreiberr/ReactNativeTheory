@@ -49,16 +49,24 @@ const res2 = myFilter(['foo', 'hoge', 'bar'], (str) => str.length >= 4);
     ~ Написать пример и вывести в консоль результат использования функции
 */
 
-// function getPrice(price: Price): number {
-//     switch (speed) {
-//       case "low":
-//         return 50;
-//       case "medium":
-//         return 100;
-//       case "high":
-//         return 150;
-//     }
-//   }
+type Price = {
+  speed: 'low' | 'medium' | 'high';
+};
+
+function getPrice(price: Price): number {
+  switch (price.speed) {
+    case 'low':
+      return 50;
+    case 'medium':
+      return 100;
+    case 'high':
+      return 150;
+  }
+}
+
+console.log(getPrice({ speed: 'low' }));
+console.log(getPrice({ speed: 'medium' }));
+console.log(getPrice({ speed: 'high' }));
 
 /*  
         Задание 4
@@ -67,13 +75,15 @@ const res2 = myFilter(['foo', 'hoge', 'bar'], (str) => str.length >= 4);
     ~ Вывести в консоль результат использования функции
 */
 
-// function addAge(obj) {
-//     const age = 25;
-//     return {
-//       ...obj,
-//       age
-//     };
-//   }
+function addAge(obj: object): object {
+  const age = 25;
+  return {
+    ...obj,
+    age
+  };
+}
+
+console.log(addAge({ name: 'Phillip', height: 175, weight: 73 }));
 
 /*  
         Задание 5
@@ -82,23 +92,29 @@ const res2 = myFilter(['foo', 'hoge', 'bar'], (str) => str.length >= 4);
     ~ action.type может быть только трех видов (increment, decrement, reset)
 */
 
-// const reducer = (state, action) => {
-//   switch (action.type) {
-//     case "increment":
-//       return state + action.amount;
-//     case "decrement":
-//       return state - action.amount;
-//     case "reset":
-//       return action.value;
-//   }
-// };
+type Action = {
+  type: 'increment' | 'decrement' | 'reset';
+  amount: number;
+  value?: number;
+};
+
+const reducer = (state: number, action: Action): number => {
+  switch (action.type) {
+    case 'increment':
+      return state + action.amount;
+    case 'decrement':
+      return state - action.amount;
+    case 'reset':
+      return action.value;
+  }
+};
 
 // Пример использования
 
-// reducer(100, {
-//     type: 'increment',
-//     amount: 10,
-// }) === 110; //true
+reducer(100, {
+  type: 'increment',
+  amount: 10
+}) === 110; //true
 
 /*  
         Задание 6
@@ -119,6 +135,7 @@ type Methods = `${Accessors}${CapitalizedAccesors}`;
     ~ На основании типа User создать тип без опциональных свойств
     ~ Использовать модификаторы типа 
 */
+
 type User = {
   id: string;
   name: string;
