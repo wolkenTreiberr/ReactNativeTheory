@@ -9,13 +9,13 @@ let arrayOfStrings: Array<string> = ['a', 'b', 'c'];
 
 function getRandomElement<T>(array: T[]): T | null {
   function randomNumber(min: number, max: number): number {
-    let rand = min + Math.random() * (max + 1 - min);
-    return Math.floor(rand);
+    let random = min + Math.random() * (max + 1 - min);
+    return Math.floor(random);
   }
 
-  let randomElemetIndexValue = randomNumber(0, array.length);
+  let randomElemetValue = randomNumber(0, array.length);
 
-  return array[randomElemetIndexValue];
+  return array[randomElemetValue];
 }
 
 console.log(getRandomElement(arrayOfNumbers));
@@ -29,13 +29,15 @@ console.log(getRandomElement(arrayOfStrings));
     ~ Вывести результат работы функции в консоль
 */
 
-function myFilter<T>(arr: Array<T>, predicate: (value: T) => any): T[] {
+function myFilter<T>(arr: Array<T>, predicate: (value: T) => boolean): T[] {
   const result = [];
+
   for (const elm of arr) {
     if (predicate(elm)) {
       result.push(elm);
     }
   }
+  
   return result;
 }
 
@@ -75,7 +77,13 @@ console.log(getPrice({ speed: 'high' }));
     ~ Вывести в консоль результат использования функции
 */
 
-function addAge(obj: object): object {
+type ObjectToChange = {
+  name: string,
+  height: number,
+  weight: number
+}
+
+function addAge(obj: ObjectToChange): object {
   const age = 25;
   return {
     ...obj,
@@ -116,6 +124,8 @@ reducer(100, {
   amount: 10
 }) === 110; //true
 
+console.log(reducer(100,{type: 'reset', amount: 10}));
+
 /*  
         Задание 6
     ~ Дано два типа Keys и Accessors
@@ -125,9 +135,9 @@ reducer(100, {
 type Keys = 'name' | 'address';
 type Accessors = 'get' | 'set';
 
-type CapitalizedAccesors = Capitalize<`${Keys}`>;
+type CapitalizedKeys = Capitalize<`${Keys}`>;
 
-type Methods = `${Accessors}${CapitalizedAccesors}`;
+type Methods = `${Accessors}${CapitalizedKeys}`;
 
 /*  
         Задание 7
