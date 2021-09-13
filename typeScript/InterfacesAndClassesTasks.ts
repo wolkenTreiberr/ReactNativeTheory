@@ -258,16 +258,16 @@
     ~ Вывести в консоль отдельные списки Users, Admins, Super Users
 */
 
-export function isAdmin(person: Admin) {
+export function isAdmin(person) {
   return person.type === 'admin';
 }
 
-export function isUser(person: User) {
+export function isUser(person) {
   return person.type === 'user';
 }
 
-export function isSuperUser(person: SuperUser) {
-  return person.hasOwnProperty('type');
+export function isSuperUser(person) {
+  return !person.hasOwnProperty('type');
 }
 
 interface User {
@@ -281,9 +281,9 @@ interface Admin extends User {
   role?: string;
 }
 
-type SuperUser = Omit<Admin, 'type'>;
+interface SuperUser extends Omit<Admin, 'type'> {}
 
-export type Person = Admin;
+export type Person = Admin | SuperUser;
 
 export const users: Person[] = [
   {
@@ -309,14 +309,20 @@ export const users: Person[] = [
     age: 64,
     role: 'World saver',
     type: 'admin'
+  },
+  {
+    name: 'Bruce',
+    age: 43,
+    role: 'Batman'
   }
 ];
 
+let usersList = [];
+let adminsList = [];
+let superusersList = [];
+
 export function logPerson(person: Person) {
   let additionalInformation: string = '';
-  let usersList = [];
-  let adminsList = [];
-  let superusersList = [];
 
   if (isAdmin(person)) {
     additionalInformation = person.role;
@@ -329,11 +335,12 @@ export function logPerson(person: Person) {
   if (isSuperUser(person)) {
     superusersList.push(person);
   }
-  console.log(` - ${person.name}, ${person.age}, ${additionalInformation}`);
 }
 
-console.log('Properties of users:');
 users.forEach(logPerson);
+console.log(`Users: ${usersList}`);
+console.log(`Admins: ${adminsList}`);
+console.log(`SuperUsers: ${superusersList}`);
 
 /*
         Задание 6
