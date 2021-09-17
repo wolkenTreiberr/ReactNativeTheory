@@ -1,10 +1,8 @@
 import React from 'react';
 import {Image, StyleSheet, TouchableOpacity} from 'react-native';
-
 interface ImageProps {
   image: () => void;
 }
-
 class SocialNetworkButton extends React.Component<ImageProps, {}> {
   render() {
     return (

@@ -1,15 +1,12 @@
 import React from 'react';
-
 import {Text, StyleSheet, View} from 'react-native';
 
 import TextButton from './TextButton';
-
 interface Header {
   title?: string;
   isInEditMode?: boolean;
   onPress?(): void;
 }
-
 class Header extends React.Component<Header, {}> {
   render() {
     return (

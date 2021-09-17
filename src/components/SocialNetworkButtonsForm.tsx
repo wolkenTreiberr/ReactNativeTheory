@@ -1,7 +1,7 @@
 import React from 'react';
-import SocialNetworkButton from './SocialNetworkButton';
 import {View, StyleSheet, Platform} from 'react-native';
 
+import SocialNetworkButton from './SocialNetworkButton';
 class SocialNetworkButtonsForm extends React.Component {
   render() {
     return (

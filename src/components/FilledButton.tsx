@@ -8,7 +8,6 @@ interface FilledButtonProps {
   disabled?: boolean;
   onPress(): void;
 }
-
 class FilledButton extends React.Component<FilledButtonProps, {}> {
   render() {
     return (

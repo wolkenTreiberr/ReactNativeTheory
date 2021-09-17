@@ -19,7 +19,6 @@ interface ProfileScreenState {
   image: object;
   isInEditMode: boolean;
 }
-
 class ProfileScreen extends React.Component<ProfileScreenState, {}> {
   state = {
     name: 'User name',

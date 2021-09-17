@@ -1,6 +1,5 @@
 import React from 'react';
 import {Text, TouchableOpacity, StyleSheet} from 'react-native';
-
 interface TextButtonProps {
   title: string;
   color: string;
@@ -8,7 +7,6 @@ interface TextButtonProps {
   onPress?(): void | boolean;
   textButtonStyle?: object;
 }
-
 class TextButton extends React.Component<TextButtonProps, {}> {
   render() {
     return (

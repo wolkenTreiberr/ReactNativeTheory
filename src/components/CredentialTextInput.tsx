@@ -1,7 +1,6 @@
 import React from 'react';
 
 import {TextInput, StyleSheet, View} from 'react-native';
-
 interface CredentialTextInputProps {
   placeholder: string;
   value?: string;

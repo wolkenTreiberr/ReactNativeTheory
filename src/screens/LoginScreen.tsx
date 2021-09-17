@@ -7,7 +7,6 @@ import CredentialTextInput from '../components/CredentialTextInput';
 import FilledButton from '../components/FilledButton';
 import SocialNetworkButtonsForm from '../components/SocialNetworkButtonsForm';
 import TextButton from '../components/TextButton';
-
 interface LoginScreenState {
   email: string;
   password: string;

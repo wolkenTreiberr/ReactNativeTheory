@@ -8,17 +8,13 @@ import {
   KeyboardAvoidingView,
 } from 'react-native';
 
-interface IBackgroundFormProps {
+interface BackgroundFormProps {
   viewStyle: object;
-  // enabledKeyboardAvoiding?: boolean;
   prepend?: JSX.Element;
   append?: JSX.Element;
 }
 
-export default class BackgroundForm extends Component<
-  IBackgroundFormProps,
-  {}
-> {
+export default class BackgroundForm extends Component<BackgroundFormProps, {}> {
   render() {
     return (
       <ImageBackground
@@ -30,10 +26,7 @@ export default class BackgroundForm extends Component<
 
         <View>{this.props.prepend}</View>
 
-        <KeyboardAvoidingView
-          style={styles.backgroundImage}
-          // enabled={this.props.enabledKeyboardAvoiding}
-        >
+        <KeyboardAvoidingView style={styles.backgroundImage}>
           <View style={this.props.viewStyle}>{this.props.children}</View>
         </KeyboardAvoidingView>
       </ImageBackground>
