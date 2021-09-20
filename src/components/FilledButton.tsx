@@ -1,7 +1,5 @@
 import React from 'react';
-
 import {Text, StyleSheet, TouchableOpacity} from 'react-native';
-
 interface FilledButtonProps {
   title: string;
   filledButtonStyle?: object;

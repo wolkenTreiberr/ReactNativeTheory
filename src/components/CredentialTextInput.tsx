@@ -1,5 +1,4 @@
 import React from 'react';
-
 import {TextInput, StyleSheet, View} from 'react-native';
 interface CredentialTextInputProps {
   placeholder: string;
@@ -10,7 +9,6 @@ interface CredentialTextInputProps {
   editable?: boolean;
   onFocus?(): void;
 }
-
 class CredentialTextInput extends React.Component<
   CredentialTextInputProps,
   {}

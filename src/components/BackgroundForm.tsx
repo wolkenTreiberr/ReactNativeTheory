@@ -1,5 +1,4 @@
-import React, {Component} from 'react';
-
+import React from 'react';
 import {
   View,
   ImageBackground,
@@ -7,14 +6,15 @@ import {
   StyleSheet,
   KeyboardAvoidingView,
 } from 'react-native';
-
 interface BackgroundFormProps {
   viewStyle: object;
   prepend?: JSX.Element;
   append?: JSX.Element;
 }
-
-export default class BackgroundForm extends Component<BackgroundFormProps, {}> {
+export default class BackgroundForm extends React.Component<
+  BackgroundFormProps,
+  {}
+> {
   render() {
     return (
       <ImageBackground
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     paddingBottom: 50,
     paddingHorizontal: 20,
     width: '100%',
-    backgroundColor: '#ffffff',
+    backgroundColor: 'white',
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
   },

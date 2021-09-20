@@ -1,7 +1,6 @@
 import React from 'react';
 import {ImageBackground, StyleSheet, TouchableOpacity} from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
-
 interface UserAvatarProps {
   avatarStyle?: object;
   avatarImg: object;
@@ -9,7 +8,6 @@ interface UserAvatarProps {
   isInEditMode: boolean;
   onPress(): void;
 }
-
 class UserAvatar extends React.Component<UserAvatarProps, {}> {
   render() {
     return (
