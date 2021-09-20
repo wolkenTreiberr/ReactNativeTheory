@@ -79,7 +79,7 @@ class ProfileScreen extends React.Component<ProfileScreenState, {}> {
         <UserAvatar
           avatarStyle={styles.avatarStyle}
           onPress={this.chooseAvatarFromLibrary}
-          avatarImg={this.state.image}
+          avatarImage={this.state.image}
           isInEditMode={this.state.isInEditMode}
           disabled={!this.state.isInEditMode}
         />

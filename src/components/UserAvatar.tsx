@@ -3,7 +3,7 @@ import {ImageBackground, StyleSheet, TouchableOpacity} from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
 interface UserAvatarProps {
   avatarStyle?: object;
-  avatarImg: object;
+  avatarImage: object;
   disabled: boolean;
   isInEditMode: boolean;
   onPress(): void;
@@ -18,7 +18,7 @@ class UserAvatar extends React.Component<UserAvatarProps, {}> {
         style={this.props.avatarStyle}>
         <ImageBackground
           style={styles.imageBackgroud}
-          source={this.props.avatarImg}
+          source={this.props.avatarImage}
           imageStyle={{borderRadius: 15}}>
           {this.props.isInEditMode && (
             <Entypo
@@ -45,6 +45,8 @@ const styles = StyleSheet.create({
     position: 'absolute',
     opacity: 1,
     overflow: 'hidden',
+    right: 4,
+    bottom: 3,
   },
 });
 
