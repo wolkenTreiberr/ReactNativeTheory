@@ -1,5 +1,0 @@
-#import <Foundation/Foundation.h>
-@interface PodsDummy_Pods_ReactNativeCLITextProject_ReactNativeCLITextProjectTests : NSObject
-@end
-@implementation PodsDummy_Pods_ReactNativeCLITextProject_ReactNativeCLITextProjectTests
-@end

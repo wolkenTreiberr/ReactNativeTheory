@@ -1,6 +1,0 @@
-module Pods_ReactNativeCLITextProject_ReactNativeCLITextProjectTests {
-  umbrella header "Pods-ReactNativeCLITextProject-ReactNativeCLITextProjectTests-umbrella.h"
-
-  export *
-  module * { export * }
-}
