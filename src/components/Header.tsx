@@ -6,19 +6,29 @@ interface Header {
   title?: string;
   isInEditMode?: boolean;
   onPress?(): void;
+  isEditable?: boolean;
 }
 class Header extends React.Component<Header, {}> {
   render() {
     return (
       <View style={styles.headerContainer}>
-        <Text style={styles.headerTitle}>{this.props.title}</Text>
-
-        <TextButton
-          title={this.props.isInEditMode ? '' : 'Edit'}
-          onPress={this.props.onPress}
-          color="white"
-          textButtonStyle={styles.editButton}
-        />
+        <Text
+          style={{
+            ...styles.headerTitle,
+            right: this.props.isEditable ? 0 : 13,
+          }}>
+          {this.props.title}
+        </Text>
+        {this.props.isEditable ? (
+          <TextButton
+            title={this.props.isInEditMode ? '' : 'Edit'}
+            onPress={this.props.onPress}
+            color="white"
+            textButtonStyle={styles.editButton}
+          />
+        ) : (
+          <TextButton title={''} color="white" />
+        )}
       </View>
     );
   }
@@ -27,7 +37,7 @@ class Header extends React.Component<Header, {}> {
 const styles = StyleSheet.create({
   headerContainer: {
     flexDirection: 'row',
-    justifyContent: 'flex-end',
+    justifyContent: 'center',
     paddingHorizontal: 20,
     marginTop: 33,
     width: '100%',
@@ -36,13 +46,14 @@ const styles = StyleSheet.create({
   headerTitle: {
     flex: 0.5,
     top: 10,
+    paddingLeft: '25%',
     color: 'white',
     fontSize: 17,
     fontWeight: '600',
   },
   editButton: {
     top: 10,
-    left: 10,
+    left: 60,
     flex: 0.1,
   },
 });

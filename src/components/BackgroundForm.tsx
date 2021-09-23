@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 interface BackgroundFormProps {
   viewStyle: object;
-  prepend?: JSX.Element;
+  prepend?: JSX.Element[];
   append?: JSX.Element;
 }
 export default class BackgroundForm extends React.Component<

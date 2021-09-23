@@ -72,6 +72,7 @@ class ProfileScreen extends React.Component<ProfileScreenState, {}> {
         prepend={
           <Header
             title="My profile"
+            isEditable={true}
             isInEditMode={this.state.isInEditMode}
             onPress={this.editModeOn}
           />
