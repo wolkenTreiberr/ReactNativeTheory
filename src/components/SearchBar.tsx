@@ -4,7 +4,7 @@ import {View, TextInput, StyleSheet, Image} from 'react-native';
 interface SearchBarProps {
   style?: object;
   placeholder: string;
-  onChangetext: () => void;
+  onChangeText: () => void;
   value?: string;
 }
 
@@ -20,7 +20,7 @@ class SearchBar extends Component<SearchBarProps, {}> {
           style={styles.textInputStyle}
           value={this.props.value}
           placeholder={this.props.placeholder}
-          onChangeText={this.props.onChangetext}
+          onChangeText={this.props.onChangeText}
         />
       </View>
     );
