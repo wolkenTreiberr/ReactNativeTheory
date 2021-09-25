@@ -1,11 +1,6 @@
 import React, {useState, useCallback} from 'react';
-import {
-  StyleSheet,
-  FlatList,
-  ListRenderItemInfo,
-  ImageSourcePropType,
-} from 'react-native';
-
+import {FlatList, ListRenderItemInfo, ImageSourcePropType} from 'react-native';
+import SubscribersScreenStyle from './SubscribersScreenStyles';
 import produce from 'immer';
 import BackgroundForm from '../components/BackgroundForm';
 import Header from '../components/Header';
@@ -113,12 +108,13 @@ function SubscribersScreen() {
       />
     );
   };
+
   return (
     <BackgroundForm
-      viewStyle={styles.viewStyle}
-      prepend={<Header title="Subscribers" isEditable={false} />}>
+      containerStyle={SubscribersScreenStyle.viewContainer}
+      prepend={[<Header title="Subscribers" isEditable={false} />]}>
       <FlatList
-        style={styles.flatListStyle}
+        style={SubscribersScreenStyle.flatList}
         data={subscribers}
         keyExtractor={item => item.id}
         renderItem={renderItem}
@@ -126,20 +122,5 @@ function SubscribersScreen() {
     </BackgroundForm>
   );
 }
-const styles = StyleSheet.create({
-  viewStyle: {
-    flex: 0.96,
-    width: '100%',
-    backgroundColor: 'white',
-    paddingTop: 20,
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    paddingBottom: 21,
-  },
-  flatListStyle: {
-    flex: 1,
-    height: 1000,
-  },
-});
 
 export default SubscribersScreen;

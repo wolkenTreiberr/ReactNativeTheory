@@ -1,9 +1,6 @@
-/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-
-import {StyleSheet} from 'react-native';
+import ProfileScreenStyle from './ProfileScreenStyles';
 import ImagePicker from 'react-native-image-crop-picker';
-
 import UserAvatar from '../components/UserAvatar';
 import BackgroundForm from '../components/BackgroundForm';
 import CredentialTextInput from '../components/CredentialTextInput';
@@ -20,15 +17,14 @@ interface ProfileScreenState {
   isInEditMode: boolean;
 }
 
-class ProfileScreen extends React.Component<ProfileScreenState, {}> {
+class ProfileScreen extends React.Component<{}, ProfileScreenState> {
   state = {
-    name: 'User name',
-    email: 'User email',
+    name: 'UserName',
+    email: 'UserEmail',
     followers: 23,
     following: 234,
     image: require('../../images/avatar.jpg'),
     isInEditMode: false,
-    isKeyboardShown: false,
   };
 
   editModeOn = () => {
@@ -37,10 +33,6 @@ class ProfileScreen extends React.Component<ProfileScreenState, {}> {
 
   editModeOff = () => {
     this.setState({isInEditMode: false});
-  };
-
-  keyboardShow = () => {
-    this.setState({isKeyboardShown: true});
   };
 
   chooseAvatarFromLibrary = () => {
@@ -58,6 +50,14 @@ class ProfileScreen extends React.Component<ProfileScreenState, {}> {
     });
   };
 
+  onChangeName = (value: string) => {
+    this.setState({name: value});
+  };
+
+  onChangeEmail = (value: string) => {
+    this.setState({email: value});
+  };
+
   isEnableButton = () => {
     return this.state.name !== '' && this.state.email !== '';
   };
@@ -65,20 +65,17 @@ class ProfileScreen extends React.Component<ProfileScreenState, {}> {
   render() {
     return (
       <BackgroundForm
-        viewStyle={{
-          ...styles.viewStyle,
-          paddingTop: this.state.isInEditMode ? 75 : 60,
-        }}
-        prepend={
+        containerStyle={ProfileScreenStyle.viewContainer}
+        prepend={[
           <Header
             title="My profile"
             isEditable={true}
             isInEditMode={this.state.isInEditMode}
             onPress={this.editModeOn}
-          />
-        }>
+          />,
+        ]}>
         <UserAvatar
-          avatarStyle={styles.avatarStyle}
+          avatarStyle={ProfileScreenStyle.avatar}
           onPress={this.chooseAvatarFromLibrary}
           avatarImage={this.state.image}
           isInEditMode={this.state.isInEditMode}
@@ -94,31 +91,27 @@ class ProfileScreen extends React.Component<ProfileScreenState, {}> {
 
         <CredentialTextInput
           value={this.state.name}
-          onChangeText={name => this.setState({name})}
+          onChangeText={this.onChangeName}
           editable={this.state.isInEditMode}
-          onFocus={this.keyboardShow}
-          inputStyle={styles.inputStyle}
+          inputStyle={ProfileScreenStyle.input}
           placeholder="Name"
         />
         <CredentialTextInput
           value={this.state.email}
-          onChangeText={email => this.setState({email})}
+          onChangeText={this.onChangeEmail}
           editable={this.state.isInEditMode}
-          onFocus={this.keyboardShow}
           placeholder="Email"
         />
         {this.state.isInEditMode ? (
           <FilledButton
-            filledButtonStyle={{
-              marginTop: this.state.isKeyboardShown ? 100 : '97%',
-            }}
+            filledButtonStyle={ProfileScreenStyle.filledButton}
             title="Update profile"
             onPress={() => this.editModeOff()}
-            disabled={this.isEnableButton() ? false : true}
+            disabled={!this.isEnableButton()}
           />
         ) : (
           <FilledButton
-            filledButtonStyle={styles.filledButtonStyle}
+            filledButtonStyle={ProfileScreenStyle.filledButton}
             title="Show state"
             onPress={() => console.log(this.state)}
           />
@@ -127,33 +120,5 @@ class ProfileScreen extends React.Component<ProfileScreenState, {}> {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  viewStyle: {
-    flex: 0.9,
-    width: '100%',
-    backgroundColor: 'white',
-    paddingTop: 60,
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    paddingBottom: 50,
-    paddingHorizontal: 20,
-  },
-  filledButtonStyle: {
-    marginTop: 240,
-  },
-  avatarStyle: {
-    width: 80,
-    height: 80,
-    justifyContent: 'center',
-    position: 'absolute',
-    alignItems: 'center',
-    top: -35,
-    left: 20,
-  },
-  inputStyle: {
-    marginBottom: 15,
-  },
-});
 
 export default ProfileScreen;

@@ -1,23 +1,24 @@
 import React, {Component} from 'react';
-import {View, TextInput, StyleSheet, Image} from 'react-native';
+import {View, TextInput, Image} from 'react-native';
+import SearchBarStyles from './SearchBarStyles';
 
 interface SearchBarProps {
   style?: object;
   placeholder: string;
-  onChangeText: () => void;
+  onChangeText: (text: string) => void;
   value?: string;
 }
 
 class SearchBar extends Component<SearchBarProps, {}> {
   render() {
     return (
-      <View style={styles.viewStyle}>
+      <View style={SearchBarStyles.viewContainer}>
         <Image
-          style={styles.iconStyle}
+          style={SearchBarStyles.containerIcon}
           source={require('../../images/search-icon.png')}
         />
         <TextInput
-          style={styles.textInputStyle}
+          style={SearchBarStyles.textInput}
           value={this.props.value}
           placeholder={this.props.placeholder}
           onChangeText={this.props.onChangeText}
@@ -26,30 +27,5 @@ class SearchBar extends Component<SearchBarProps, {}> {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  viewStyle: {
-    width: 'auto',
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    borderRadius: 20,
-    backgroundColor: 'white',
-    overflow: 'hidden',
-    alignItems: 'center',
-    margin: 20,
-    top: 12,
-  },
-  textInputStyle: {
-    height: 40,
-    flex: 1,
-    borderRightColor: 'grey',
-    backgroundColor: 'white',
-  },
-  iconStyle: {
-    width: 30,
-    height: 30,
-    marginHorizontal: 5,
-  },
-});
 
 export default SearchBar;

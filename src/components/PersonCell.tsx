@@ -1,22 +1,27 @@
 import React, {Component} from 'react';
-import {View, StyleSheet, Image, Text} from 'react-native';
-
-import {AddPeopleItem} from '../screens/AddPeopleScreen';
+import {View, Image, Text} from 'react-native';
+import {Person} from '../screens/AddPeopleScreen';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
+import PersonCellStyles from './PersonCellStyles';
 
 interface PersonCellProps {
-  person: AddPeopleItem;
+  person: Person;
   onPress: () => void;
 }
 
 class PersonCell extends Component<PersonCellProps, {}> {
   render() {
     return (
-      <View style={styles.viewContainer}>
-        <Image source={this.props.person.image} style={styles.imageStyle} />
-        <View style={styles.checBoxStyle}>
-          <Text style={styles.titleStyle}>{this.props.person._title}</Text>
-          <Text style={styles.descriptionStyle}>
+      <View style={PersonCellStyles.viewContainer}>
+        <Image
+          source={this.props.person.image}
+          style={PersonCellStyles.containerImage}
+        />
+        <View style={PersonCellStyles.containerChecBox}>
+          <Text style={PersonCellStyles.containerTitle}>
+            {this.props.person._title}
+          </Text>
+          <Text style={PersonCellStyles.containerDescription}>
             {this.props.person.description}
           </Text>
         </View>
@@ -25,41 +30,12 @@ class PersonCell extends Component<PersonCellProps, {}> {
           fillColor="rgb(97, 20, 204)"
           unfillColor="#FFFFFF"
           isChecked={this.props.person.isAdded}
-          iconStyle={{borderColor: 'rgb(97, 20, 204)', marginLeft: 'auto'}}
+          iconStyle={PersonCellStyles.checkBoxIcon}
           onPress={this.props.onPress}
         />
       </View>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  viewContainer: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    height: 67,
-    paddingLeft: 35,
-    paddingRight: 20,
-    alignItems: 'center',
-  },
-  imageStyle: {
-    width: 47,
-    height: 47,
-    borderRadius: 8,
-    marginRight: 10,
-  },
-  titleStyle: {
-    color: 'rgb(77, 81, 128)',
-    fontSize: 17,
-    fontWeight: '700',
-  },
-  descriptionStyle: {
-    color: 'rgb(181, 182, 221)',
-    fontSize: 12,
-  },
-  checBoxStyle: {
-    marginRight: 'auto',
-  },
-});
 
 export default PersonCell;

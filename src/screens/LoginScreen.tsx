@@ -1,11 +1,10 @@
 import React from 'react';
-
-import {Text, StyleSheet, View} from 'react-native';
-
+import {Text, View} from 'react-native';
+import LoginScreenStyles from './LoginScreenStyles';
 import BackgroundForm from '../components/BackgroundForm';
 import CredentialTextInput from '../components/CredentialTextInput';
 import FilledButton from '../components/FilledButton';
-import SocialNetworkButtonsForm from '../components/SocialNetworkButtonsForm';
+import SocialNetworkForm from '../components/SocialNetworkForm';
 import TextButton from '../components/TextButton';
 
 interface LoginScreenState {
@@ -21,12 +20,12 @@ class LoginScreen extends React.Component<{}, LoginScreenState> {
 
   render() {
     return (
-      <BackgroundForm viewStyle={styles.viewStyle}>
-        <View style={styles.inputContainer}>
+      <BackgroundForm containerStyle={LoginScreenStyles.viewContainer}>
+        <View style={LoginScreenStyles.inputContainer}>
           <CredentialTextInput
             value={this.state.email}
             onChangeText={email => this.setState({email})}
-            inputStyle={styles.inputStyle}
+            inputStyle={LoginScreenStyles.input}
             placeholder="Email"
           />
           <CredentialTextInput
@@ -40,7 +39,7 @@ class LoginScreen extends React.Component<{}, LoginScreenState> {
           title="Forget password?"
           align="flex-start"
           color="rgb(64, 80, 164)"
-          textButtonStyle={styles.textButtonStyle}
+          textButtonStyle={LoginScreenStyles.textButton}
         />
         <FilledButton
           onPress={() =>
@@ -48,8 +47,8 @@ class LoginScreen extends React.Component<{}, LoginScreenState> {
           }
           title="Sign In"
         />
-        <Text style={styles.orSignWithStyle}>or sign with</Text>
-        <SocialNetworkButtonsForm />
+        <Text style={LoginScreenStyles.orSignWith}>or sign with</Text>
+        <SocialNetworkForm />
         <TextButton
           title="Don’t have an account?"
           align="center"
@@ -60,36 +59,5 @@ class LoginScreen extends React.Component<{}, LoginScreenState> {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  viewStyle: {
-    paddingTop: 30,
-    paddingBottom: 50,
-    paddingHorizontal: 20,
-    width: '100%',
-    backgroundColor: '#ffffff',
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-  },
-  inputContainer: {
-    marginBottom: 30,
-  },
-  inputStyle: {
-    marginBottom: 15,
-  },
-  textButtonStyle: {
-    marginBottom: 40,
-  },
-  orSignWithStyle: {
-    marginTop: 18,
-    marginBottom: 18,
-    textAlign: 'center',
-    fontSize: 13,
-    color: 'rgb(181, 182, 221)',
-  },
-  buttonsContainerStyle: {
-    marginBottom: 30,
-  },
-});
 
 export default LoginScreen;

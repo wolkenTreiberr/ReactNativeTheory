@@ -1,12 +1,11 @@
 import React, {useState, useCallback, useMemo} from 'react';
 import {
   SectionList,
-  StyleSheet,
   ImageSourcePropType,
   ListRenderItemInfo,
   Text,
 } from 'react-native';
-
+import AddPeopleScreenStyles from './AddPeopleScreenStyles';
 import produce from 'immer';
 import BackgroundForm from '../components/BackgroundForm';
 import Header from '../components/Header';
@@ -149,7 +148,7 @@ function AddPeopleScreen() {
     );
   }, []);
 
-  const renderItem = ({item}: ListRenderItemInfo<AddPeopleItem>) => {
+  const renderItem = ({item}: ListRenderItemInfo<Person>) => {
     return <PersonCell person={item} onPress={() => toggleSelect(item.id)} />;
   };
 
@@ -181,7 +180,7 @@ function AddPeopleScreen() {
 
   return (
     <BackgroundForm
-      viewStyle={styles.viewStyle}
+      containerStyle={AddPeopleScreenStyles.sectionView}
       prepend={[
         <Header title="Add people" isEditable={false} />,
         <SearchBar
@@ -194,28 +193,11 @@ function AddPeopleScreen() {
         sections={filteredData}
         renderItem={renderItem}
         renderSectionHeader={({section: {title}}) => (
-          <Text style={styles.sectionHeader}>{title}</Text>
+          <Text style={AddPeopleScreenStyles.sectionHeader}>{title}</Text>
         )}
       />
     </BackgroundForm>
   );
 }
-
-const styles = StyleSheet.create({
-  viewStyle: {
-    flex: 0.96,
-    width: '100%',
-    backgroundColor: 'white',
-    paddingTop: 20,
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    paddingBottom: 21,
-  },
-  sectionHeader: {
-    color: 'gray',
-    fontSize: 20,
-    marginLeft: 15,
-  },
-});
 
 export default AddPeopleScreen;
