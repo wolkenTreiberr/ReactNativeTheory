@@ -1,95 +1,61 @@
-import React from 'react';
-
-import {Text, StyleSheet, View} from 'react-native';
-
+import React, {useState} from 'react';
+import {Text, View} from 'react-native';
+import LoginScreenStyles from './LoginScreenStyles';
 import BackgroundForm from '../components/BackgroundForm';
 import CredentialTextInput from '../components/CredentialTextInput';
 import FilledButton from '../components/FilledButton';
-import SocialNetworkButtonsForm from '../components/SocialNetworkButtonsForm';
+import SocialNetworkForm from '../components/SocialNetworkForm';
 import TextButton from '../components/TextButton';
+// import useDeviceOrientation from '../hooks/useDeviceOrientation';
 
 interface LoginScreenState {
   email: string;
   password: string;
 }
 
-class LoginScreen extends React.Component<{}, LoginScreenState> {
-  state = {
-    email: '',
-    password: '',
-  };
+const LoginScreen = () => {
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  // const orientation = useDeviceOrientation;
 
-  render() {
-    return (
-      <BackgroundForm viewStyle={styles.viewStyle}>
-        <View style={styles.inputContainer}>
-          <CredentialTextInput
-            value={this.state.email}
-            onChangeText={email => this.setState({email})}
-            inputStyle={styles.inputStyle}
-            placeholder="Email"
-          />
-          <CredentialTextInput
-            value={this.state.password}
-            onChangeText={password => this.setState({password})}
-            placeholder="Password"
-            secureTextEntry={true}
-          />
-        </View>
-        <TextButton
-          title="Forget password?"
-          align="flex-start"
-          color="rgb(64, 80, 164)"
-          textButtonStyle={styles.textButtonStyle}
+  return (
+    <BackgroundForm containerStyle={LoginScreenStyles.viewContainer}>
+      <View style={LoginScreenStyles.inputContainer}>
+        <CredentialTextInput
+          value={email}
+          onChangeText={newEmail => setEmail(newEmail)}
+          inputStyle={LoginScreenStyles.input}
+          placeholder="Email"
         />
-        <FilledButton
-          onPress={() =>
-            console.log('"Sign in" button was pressed', this.state)
-          }
-          title="Sign In"
+        <CredentialTextInput
+          value={password}
+          onChangeText={newPassword => setPassword(newPassword)}
+          placeholder="Password"
+          secureTextEntry={true}
         />
-        <Text style={styles.orSignWithStyle}>or sign with</Text>
-        <SocialNetworkButtonsForm />
-        <TextButton
-          title="Don’t have an account?"
-          align="center"
-          color="rgb(181, 182, 221)"
-          textButtonStyle={{marginTop: 30}}
-        />
-      </BackgroundForm>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  viewStyle: {
-    paddingTop: 30,
-    paddingBottom: 50,
-    paddingHorizontal: 20,
-    width: '100%',
-    backgroundColor: '#ffffff',
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-  },
-  inputContainer: {
-    marginBottom: 30,
-  },
-  inputStyle: {
-    marginBottom: 15,
-  },
-  textButtonStyle: {
-    marginBottom: 40,
-  },
-  orSignWithStyle: {
-    marginTop: 18,
-    marginBottom: 18,
-    textAlign: 'center',
-    fontSize: 13,
-    color: 'rgb(181, 182, 221)',
-  },
-  buttonsContainerStyle: {
-    marginBottom: 30,
-  },
-});
+      </View>
+      <TextButton
+        title="Forget password?"
+        align="flex-start"
+        color="rgb(64, 80, 164)"
+        textButtonStyle={LoginScreenStyles.textButton}
+      />
+      <FilledButton
+        onPress={() =>
+          console.log('"Sign in" button was pressed', email, password)
+        }
+        title="Sign In"
+      />
+      <Text style={LoginScreenStyles.orSignWith}>or sign with</Text>
+      <SocialNetworkForm />
+      <TextButton
+        title="Don’t have an account?"
+        align="center"
+        color="rgb(181, 182, 221)"
+        textButtonStyle={LoginScreenStyles.dontHaveAnAccount}
+      />
+    </BackgroundForm>
+  );
+};
 
 export default LoginScreen;

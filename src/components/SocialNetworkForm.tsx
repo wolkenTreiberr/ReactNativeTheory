@@ -2,7 +2,7 @@ import React from 'react';
 import {View, StyleSheet, Platform} from 'react-native';
 
 import SocialNetworkButton from './SocialNetworkButton';
-class SocialNetworkButtonsForm extends React.Component {
+class SocialNetworkForm extends React.Component {
   render() {
     return (
       <View style={styles.containerStyle}>
@@ -29,4 +29,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SocialNetworkButtonsForm;
+export default SocialNetworkForm;

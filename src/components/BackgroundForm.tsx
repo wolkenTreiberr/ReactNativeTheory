@@ -7,7 +7,7 @@ import {
   KeyboardAvoidingView,
 } from 'react-native';
 interface BackgroundFormProps {
-  viewStyle: object;
+  containerStyle: object;
   prepend?: JSX.Element;
   append?: JSX.Element;
 }
@@ -27,7 +27,7 @@ export default class BackgroundForm extends React.Component<
         <View>{this.props.prepend}</View>
 
         <KeyboardAvoidingView style={styles.backgroundImage}>
-          <View style={this.props.viewStyle}>{this.props.children}</View>
+          <View style={this.props.containerStyle}>{this.props.children}</View>
         </KeyboardAvoidingView>
       </ImageBackground>
     );
