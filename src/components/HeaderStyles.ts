@@ -1,27 +1,25 @@
 import {StyleSheet} from 'react-native';
 
-const HeaderStyles = StyleSheet.create({
+const Headerstyles = StyleSheet.create({
   headerContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
     paddingHorizontal: 20,
-    marginTop: 33,
+    marginTop: 30,
     width: '100%',
-    alignItems: 'center',
+    marginBottom: 33,
   },
   headerTitle: {
-    flex: 0.5,
     top: 10,
-    paddingLeft: '25%',
+    position: 'absolute',
     color: 'white',
     fontSize: 17,
     fontWeight: '600',
   },
   editButton: {
-    top: 10,
-    left: 60,
-    flex: 0.1,
+    top: 15,
+    marginLeft: 'auto',
   },
 });
 
-export default HeaderStyles;
+export default Headerstyles;

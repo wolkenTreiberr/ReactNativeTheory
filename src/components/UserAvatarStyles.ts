@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 
-const UserAvatarStyles = StyleSheet.create({
+const UserAvatarstyles = StyleSheet.create({
   imageBackground: {
     width: 90,
     height: 90,
@@ -16,4 +16,4 @@ const UserAvatarStyles = StyleSheet.create({
   },
 });
 
-export default UserAvatarStyles;
+export default UserAvatarstyles;

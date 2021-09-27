@@ -1,12 +1,12 @@
 import React from 'react';
 import {View, Platform} from 'react-native';
 import SocialNetworkButton from './SocialNetworkButton';
-import SocialNetworkFormStyles from './SocialNetworkFormStyles';
+import SocialNetworkFormstyles from './SocialNetworkFormstyles';
 
 class SocialNetworkButtonsForm extends React.Component {
   render() {
     return (
-      <View style={SocialNetworkFormStyles.ViewContainer}>
+      <View style={SocialNetworkFormstyles.ViewContainer}>
         <SocialNetworkButton
           image={require('../../images/facebook-icon.png')}
         />

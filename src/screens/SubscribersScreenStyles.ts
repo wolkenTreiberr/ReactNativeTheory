@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 
-const SubscribersScreenStyle = StyleSheet.create({
+const SubscribersScreenstyle = StyleSheet.create({
   viewContainer: {
     flex: 0.96,
     width: '100%',
@@ -16,4 +16,4 @@ const SubscribersScreenStyle = StyleSheet.create({
   },
 });
 
-export default SubscribersScreenStyle;
+export default SubscribersScreenstyle;

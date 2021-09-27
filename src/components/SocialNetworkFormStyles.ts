@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 
-const SocialNetworkFormStyles = StyleSheet.create({
+const SocialNetworkFormstyles = StyleSheet.create({
   ViewContainer: {
     flex: 1,
     flexDirection: 'row',
@@ -9,4 +9,4 @@ const SocialNetworkFormStyles = StyleSheet.create({
   },
 });
 
-export default SocialNetworkFormStyles;
+export default SocialNetworkFormstyles;

@@ -1,7 +1,7 @@
 import React from 'react';
 import {ImageBackground, TouchableOpacity} from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
-import UserAvatarStyles from './UserAvatarStyles';
+import UserAvatarstyles from './UserAvatarstyles';
 
 interface UserAvatarProps {
   avatarStyle?: object;
@@ -20,7 +20,7 @@ class UserAvatar extends React.Component<UserAvatarProps, {}> {
         disabled={this.props.disabled}
         style={this.props.avatarStyle}>
         <ImageBackground
-          style={UserAvatarStyles.imageBackground}
+          style={UserAvatarstyles.imageBackground}
           source={this.props.avatarImage}
           imageStyle={{borderRadius: 15}}>
           {this.props.isInEditMode && (
@@ -28,7 +28,7 @@ class UserAvatar extends React.Component<UserAvatarProps, {}> {
               name="images"
               size={20}
               color="white"
-              style={UserAvatarStyles.icon}
+              style={UserAvatarstyles.icon}
             />
           )}
         </ImageBackground>

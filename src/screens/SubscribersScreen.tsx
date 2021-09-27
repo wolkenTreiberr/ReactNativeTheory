@@ -1,7 +1,6 @@
-import React, {useState, useCallback} from 'react';
+import React, {useState} from 'react';
 import {FlatList, ListRenderItemInfo, ImageSourcePropType} from 'react-native';
-import SubscribersScreenStyle from './SubscribersScreenStyles';
-import produce from 'immer';
+import SubscribersScreenstyle from './SubscribersScreenstyles';
 import BackgroundForm from '../components/BackgroundForm';
 import Header from '../components/Header';
 import SubscriberCell from '../components/SubscriberCell';
@@ -88,17 +87,16 @@ function SubscribersScreen() {
     },
   ]);
 
-  const toggleFollow = useCallback((id: string) => {
+  const toggleFollow = (id: string) => {
     setSubscribers(
-      produce(draft => {
-        draft.find(item => {
-          if (item.id === id) {
-            item.isFollowing = !item.isFollowing;
-          }
-        });
+      subscribers.filter(item => {
+        if (item.id === id) {
+          item.isFollowing = !item.isFollowing;
+        }
+        return item;
       }),
     );
-  }, []);
+  };
 
   const renderItem = ({item}: ListRenderItemInfo<SubscriberItem>) => {
     return (
@@ -111,13 +109,13 @@ function SubscribersScreen() {
 
   return (
     <BackgroundForm
-      containerStyle={SubscribersScreenStyle.viewContainer}
-      prepend={[<Header title="Subscribers" isEditable={false} />]}>
+      containerStyle={SubscribersScreenstyle.viewContainer}
+      prependedChildren={[<Header title="Subscribers" isEditable={false} />]}>
       <FlatList
-        style={SubscribersScreenStyle.flatList}
+        style={SubscribersScreenstyle.flatList}
         data={subscribers}
-        keyExtractor={item => item.id}
         renderItem={renderItem}
+        keyExtractor={item => item.id}
       />
     </BackgroundForm>
   );

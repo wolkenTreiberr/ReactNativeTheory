@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 
-const SocialNetworkButtonStyles = StyleSheet.create({
+const SocialNetworkButtonstyles = StyleSheet.create({
   touchableOpacity: {
     width: 45,
     height: 45,
@@ -16,4 +16,4 @@ const SocialNetworkButtonStyles = StyleSheet.create({
   },
 });
 
-export default SocialNetworkButtonStyles;
+export default SocialNetworkButtonstyles;

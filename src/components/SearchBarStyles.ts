@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 
-const SearchBarStyles = StyleSheet.create({
+const SearchBarstyles = StyleSheet.create({
   viewContainer: {
     width: 'auto',
     flexDirection: 'row',
@@ -25,4 +25,4 @@ const SearchBarStyles = StyleSheet.create({
   },
 });
 
-export default SearchBarStyles;
+export default SearchBarstyles;

@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 
-const AddPeopleScreenStyle = StyleSheet.create({
+const AddPeopleScreenstyle = StyleSheet.create({
   sectionView: {
     flex: 0.96,
     width: '100%',
@@ -17,4 +17,4 @@ const AddPeopleScreenStyle = StyleSheet.create({
   },
 });
 
-export default AddPeopleScreenStyle;
+export default AddPeopleScreenstyle;

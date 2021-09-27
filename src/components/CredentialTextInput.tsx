@@ -1,6 +1,6 @@
 import React from 'react';
 import {TextInput, View} from 'react-native';
-import CredentialTextInputStyles from './CredentialTextInputStyles';
+import CredentialTextInputstyles from './CredentialTextInputstyles';
 
 interface CredentialTextInputProps {
   placeholder: string;
@@ -22,7 +22,7 @@ class CredentialTextInput extends React.Component<CredentialTextInputProps> {
           placeholder={this.props.placeholder}
           secureTextEntry={this.props.secureTextEntry}
           style={{
-            ...CredentialTextInputStyles.textInput,
+            ...CredentialTextInputstyles.textInput,
             ...this.props.inputStyle,
           }}
         />

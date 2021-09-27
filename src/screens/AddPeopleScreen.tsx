@@ -5,7 +5,7 @@ import {
   ListRenderItemInfo,
   Text,
 } from 'react-native';
-import AddPeopleScreenStyles from './AddPeopleScreenStyles';
+import AddPeopleScreenstyles from './AddPeopleScreenstyles';
 import produce from 'immer';
 import BackgroundForm from '../components/BackgroundForm';
 import Header from '../components/Header';
@@ -14,7 +14,7 @@ import SearchBar from '../components/SearchBar';
 
 export interface Person {
   image?: ImageSourcePropType;
-  _title: string;
+  title: string;
   description: string;
   isAdded: boolean;
   id: string;
@@ -36,14 +36,14 @@ function AddPeopleScreen() {
       data: [
         {
           image: require('../../images/avatar.jpg'),
-          _title: 'Aaron',
+          title: 'Aaron',
           description: 'Description...',
           isAdded: true,
           id: '1',
         },
         {
           image: require('../../images/avatar.jpg'),
-          _title: 'Albert',
+          title: 'Albert',
           description: 'Description...',
           isAdded: false,
           id: '2',
@@ -56,14 +56,14 @@ function AddPeopleScreen() {
       data: [
         {
           image: require('../../images/avatar.jpg'),
-          _title: 'Bruno',
+          title: 'Bruno',
           description: 'Description...',
           isAdded: false,
           id: '3',
         },
         {
           image: require('../../images/avatar.jpg'),
-          _title: 'Brian',
+          title: 'Brian',
           description: 'Description...',
           isAdded: false,
           id: '4',
@@ -76,14 +76,14 @@ function AddPeopleScreen() {
       data: [
         {
           image: require('../../images/avatar.jpg'),
-          _title: 'Cindy',
+          title: 'Cindy',
           description: 'Description...',
           isAdded: false,
           id: '5',
         },
         {
           image: require('../../images/avatar.jpg'),
-          _title: 'Caesar',
+          title: 'Caesar',
           description: 'Description...',
           isAdded: true,
           id: '6',
@@ -96,21 +96,21 @@ function AddPeopleScreen() {
       data: [
         {
           image: require('../../images/avatar.jpg'),
-          _title: 'Donny',
+          title: 'Donny',
           description: 'Description...',
           isAdded: true,
           id: '7',
         },
         {
           image: require('../../images/avatar.jpg'),
-          _title: 'Dylan',
+          title: 'Dylan',
           description: 'Description...',
           isAdded: false,
           id: '8',
         },
         {
           image: require('../../images/avatar.jpg'),
-          _title: 'Danis',
+          title: 'Danis',
           description: 'Description...',
           isAdded: true,
           id: '9',
@@ -123,7 +123,7 @@ function AddPeopleScreen() {
       data: [
         {
           image: require('../../images/avatar.jpg'),
-          _title: 'William',
+          title: 'William',
           description: 'Description...',
           isAdded: false,
           id: '10',
@@ -154,34 +154,34 @@ function AddPeopleScreen() {
 
   useMemo(() => {
     return setFilteredData(
-      people.reduce((FilterResult: AddPeopleItem[], sectionData) => {
+      people.reduce((filterResult: AddPeopleItem[], sectionData) => {
         const textData = search.toUpperCase();
         const {id, title, data} = sectionData;
 
         const filteredPersons = data.filter(person => {
-          const personData = person._title
-            ? person._title.toUpperCase()
+          const personData = person.title
+            ? person.title.toUpperCase()
             : ''.toUpperCase();
           return personData.indexOf(textData) > -1;
         });
 
         if (filteredPersons.length !== 0) {
-          FilterResult.push({
+          filterResult.push({
             id,
             title,
             data: filteredPersons,
           });
         }
 
-        return FilterResult;
+        return filterResult;
       }, []),
     );
   }, [search, people]);
 
   return (
     <BackgroundForm
-      containerStyle={AddPeopleScreenStyles.sectionView}
-      prepend={[
+      containerStyle={AddPeopleScreenstyles.sectionView}
+      prependedChildren={[
         <Header title="Add people" isEditable={false} />,
         <SearchBar
           value={search}
@@ -193,7 +193,7 @@ function AddPeopleScreen() {
         sections={filteredData}
         renderItem={renderItem}
         renderSectionHeader={({section: {title}}) => (
-          <Text style={AddPeopleScreenStyles.sectionHeader}>{title}</Text>
+          <Text style={AddPeopleScreenstyles.sectionHeader}>{title}</Text>
         )}
       />
     </BackgroundForm>

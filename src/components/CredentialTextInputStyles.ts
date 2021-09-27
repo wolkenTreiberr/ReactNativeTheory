@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 
-const CredentialTextInputStyles = StyleSheet.create({
+const CredentialTextInputstyles = StyleSheet.create({
   textInput: {
     width: '100%',
     fontSize: 15,
@@ -10,4 +10,4 @@ const CredentialTextInputStyles = StyleSheet.create({
   },
 });
 
-export default CredentialTextInputStyles;
+export default CredentialTextInputstyles;

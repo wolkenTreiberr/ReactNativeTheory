@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 
-const FollowersBlockStyles = StyleSheet.create({
+const FollowersBlockstyles = StyleSheet.create({
   userInfoContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
@@ -31,4 +31,4 @@ const FollowersBlockStyles = StyleSheet.create({
   },
 });
 
-export default FollowersBlockStyles;
+export default FollowersBlockstyles;

@@ -1,5 +1,5 @@
 import React from 'react';
-import ProfileScreenStyles from './ProfileScreenStyles';
+import ProfileScreenstyles from './ProfileScreenstyles';
 import ImagePicker from 'react-native-image-crop-picker';
 import UserAvatar from '../components/UserAvatar';
 import BackgroundForm from '../components/BackgroundForm';
@@ -65,17 +65,17 @@ class ProfileScreen extends React.Component<{}, ProfileScreenState> {
   render() {
     return (
       <BackgroundForm
-        containerStyle={ProfileScreenStyles.viewContainer}
-        prepend={[
+        containerStyle={ProfileScreenstyles.viewContainer}
+        prependedChildren={[
           <Header
-            title="My profile"
+            title=" My profile"
             isEditable={true}
             isInEditMode={this.state.isInEditMode}
             onPress={this.editModeOn}
           />,
         ]}>
         <UserAvatar
-          avatarStyle={ProfileScreenStyles.avatar}
+          avatarStyle={ProfileScreenstyles.avatar}
           onPress={this.chooseAvatarFromLibrary}
           avatarImage={this.state.image}
           isInEditMode={this.state.isInEditMode}
@@ -93,7 +93,7 @@ class ProfileScreen extends React.Component<{}, ProfileScreenState> {
           value={this.state.name}
           onChangeText={this.onChangeName}
           editable={this.state.isInEditMode}
-          inputStyle={ProfileScreenStyles.input}
+          inputStyle={ProfileScreenstyles.input}
           placeholder="Name"
         />
         <CredentialTextInput
@@ -104,14 +104,14 @@ class ProfileScreen extends React.Component<{}, ProfileScreenState> {
         />
         {this.state.isInEditMode ? (
           <FilledButton
-            filledButtonStyle={ProfileScreenStyles.filledButton}
+            filledButtonStyle={ProfileScreenstyles.filledButton}
             title="Update profile"
             onPress={() => this.editModeOff()}
             disabled={!this.isEnableButton()}
           />
         ) : (
           <FilledButton
-            filledButtonStyle={ProfileScreenStyles.filledButton}
+            filledButtonStyle={ProfileScreenstyles.filledButton}
             title="Show state"
             onPress={() => console.log(this.state)}
           />

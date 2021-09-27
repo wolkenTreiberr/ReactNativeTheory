@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {View, Image, Text} from 'react-native';
 import {SubscriberItem} from '../screens/SubscribersScreen';
 import FilledButton from './FilledButton';
-import SubscriberCellStyles from './SubscriberCellStyles';
+import SubscriberCellstyles from './SubscriberCellstyles';
 
 interface SubscriberCellProps {
   subscriber: SubscriberItem;
@@ -12,29 +12,29 @@ interface SubscriberCellProps {
 class SubscriberCell extends Component<SubscriberCellProps, {}> {
   render() {
     return (
-      <View style={SubscriberCellStyles.viewContainer}>
+      <View style={SubscriberCellstyles.viewContainer}>
         <Image
           source={this.props.subscriber.image}
-          style={SubscriberCellStyles.userImage}
+          style={SubscriberCellstyles.userImage}
         />
         <View>
-          <Text style={SubscriberCellStyles.userTitle}>
+          <Text style={SubscriberCellstyles.userTitle}>
             {this.props.subscriber.title}
           </Text>
-          <Text style={SubscriberCellStyles.userDescription}>
+          <Text style={SubscriberCellstyles.userDescription}>
             {this.props.subscriber.description}
           </Text>
         </View>
         {this.props.subscriber.isFollowing ? (
           <FilledButton
             title={'Follow'}
-            filledButtonStyle={SubscriberCellStyles.followButton}
+            filledButtonStyle={SubscriberCellstyles.followButton}
             onPress={this.props.onPressFollowButton}
           />
         ) : (
           <FilledButton
             title={'Following'}
-            filledButtonStyle={SubscriberCellStyles.followingButton}
+            filledButtonStyle={SubscriberCellstyles.followingButton}
             onPress={this.props.onPressFollowButton}
           />
         )}

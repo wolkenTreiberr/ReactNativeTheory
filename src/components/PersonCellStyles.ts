@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 
-const PersonCellStyles = StyleSheet.create({
+const PersonCellstyles = StyleSheet.create({
   viewContainer: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
@@ -33,4 +33,4 @@ const PersonCellStyles = StyleSheet.create({
   },
 });
 
-export default PersonCellStyles;
+export default PersonCellstyles;

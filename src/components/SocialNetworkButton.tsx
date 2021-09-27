@@ -1,6 +1,6 @@
 import React from 'react';
 import {Image, TouchableOpacity} from 'react-native';
-import SocialNetworkButtonStyles from './SocialNetworkButtonStyles';
+import SocialNetworkButtonstyles from './SocialNetworkButtonstyles';
 
 interface ImageProps {
   image: () => void;
@@ -8,9 +8,9 @@ interface ImageProps {
 class SocialNetworkButton extends React.Component<ImageProps, {}> {
   render() {
     return (
-      <TouchableOpacity style={SocialNetworkButtonStyles.touchableOpacity}>
+      <TouchableOpacity style={SocialNetworkButtonstyles.touchableOpacity}>
         <Image
-          style={SocialNetworkButtonStyles.icon}
+          style={SocialNetworkButtonstyles.icon}
           source={this.props.image}
         />
       </TouchableOpacity>

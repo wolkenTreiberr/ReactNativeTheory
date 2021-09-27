@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text, View} from 'react-native';
-import LoginScreenStyles from './LoginScreenStyles';
+import LoginScreenstyles from './LoginScreenstyles';
 import BackgroundForm from '../components/BackgroundForm';
 import CredentialTextInput from '../components/CredentialTextInput';
 import FilledButton from '../components/FilledButton';
@@ -20,12 +20,12 @@ class LoginScreen extends React.Component<{}, LoginScreenState> {
 
   render() {
     return (
-      <BackgroundForm containerStyle={LoginScreenStyles.viewContainer}>
-        <View style={LoginScreenStyles.inputContainer}>
+      <BackgroundForm containerStyle={LoginScreenstyles.viewContainer}>
+        <View style={LoginScreenstyles.inputContainer}>
           <CredentialTextInput
             value={this.state.email}
             onChangeText={email => this.setState({email})}
-            inputStyle={LoginScreenStyles.input}
+            inputStyle={LoginScreenstyles.input}
             placeholder="Email"
           />
           <CredentialTextInput
@@ -39,7 +39,7 @@ class LoginScreen extends React.Component<{}, LoginScreenState> {
           title="Forget password?"
           align="flex-start"
           color="rgb(64, 80, 164)"
-          textButtonStyle={LoginScreenStyles.textButton}
+          textButtonStyle={LoginScreenstyles.textButton}
         />
         <FilledButton
           onPress={() =>
@@ -47,7 +47,7 @@ class LoginScreen extends React.Component<{}, LoginScreenState> {
           }
           title="Sign In"
         />
-        <Text style={LoginScreenStyles.orSignWith}>or sign with</Text>
+        <Text style={LoginScreenstyles.orSignWith}>or sign with</Text>
         <SocialNetworkForm />
         <TextButton
           title="Don’t have an account?"

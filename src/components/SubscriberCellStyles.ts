@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 
-const SubscriberCellStyles = StyleSheet.create({
+const SubscriberCellstyles = StyleSheet.create({
   viewContainer: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
@@ -41,4 +41,4 @@ const SubscriberCellStyles = StyleSheet.create({
   },
 });
 
-export default SubscriberCellStyles;
+export default SubscriberCellstyles;

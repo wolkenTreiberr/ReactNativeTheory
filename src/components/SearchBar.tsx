@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {View, TextInput, Image} from 'react-native';
-import SearchBarStyles from './SearchBarStyles';
+import SearchBarstyles from './SearchBarstyles';
 
 interface SearchBarProps {
   style?: object;
@@ -12,13 +12,13 @@ interface SearchBarProps {
 class SearchBar extends Component<SearchBarProps, {}> {
   render() {
     return (
-      <View style={SearchBarStyles.viewContainer}>
+      <View style={SearchBarstyles.viewContainer}>
         <Image
-          style={SearchBarStyles.containerIcon}
+          style={SearchBarstyles.containerIcon}
           source={require('../../images/search-icon.png')}
         />
         <TextInput
-          style={SearchBarStyles.textInput}
+          style={SearchBarstyles.textInput}
           value={this.props.value}
           placeholder={this.props.placeholder}
           onChangeText={this.props.onChangeText}

@@ -1,9 +1,9 @@
 import {StyleSheet} from 'react-native';
 
-const TextButtonStyles = StyleSheet.create({
+const TextButtonstyles = StyleSheet.create({
   textStyle: {
     fontSize: 13,
   },
 });
 
-export default TextButtonStyles;
+export default TextButtonstyles;
