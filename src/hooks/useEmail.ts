@@ -2,7 +2,7 @@ import {useState} from 'react';
 
 const useEmail = (initialValue: string) => {
   const [email, setState] = useState<string>(initialValue);
-  const [error, setError] = useState<null | string>(null);
+  const [emailError, setError] = useState<null | string>(null);
 
   const validateEmail = (validatedValue: string) => {
     const regEx = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -24,7 +24,7 @@ const useEmail = (initialValue: string) => {
     validateEmail(value);
   };
 
-  return [email, error, setEmail] as const;
+  return [email, emailError, setEmail] as const;
 };
 
 export default useEmail;

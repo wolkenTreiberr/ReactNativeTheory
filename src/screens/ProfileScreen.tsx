@@ -8,6 +8,7 @@ import FilledButton from '../components/FilledButton';
 import FollowersBlock from '../components/FollowersBlock';
 import Header from '../components/Header';
 import useEmail from '../hooks/useEmail';
+import useName from '../hooks/useName';
 
 interface ProfileScreenState {
   followers: number;
@@ -23,8 +24,8 @@ const initialState = {
 
 const ProfileScreen = () => {
   const [state, setState] = useState<ProfileScreenState>(initialState);
-  const [name, setName] = useState('userName');
-  const [email, error, setEmail] = useEmail('userEmail@mail.com');
+  const [name, nameError, setName] = useName('userName');
+  const [email, emailError, setEmail] = useEmail('userEmail@mail.com');
   const [avatar, setAvatar] = useState<string>(
     require('../../images/avatar.jpg'),
   );
@@ -68,7 +69,9 @@ const ProfileScreen = () => {
   };
 
   const isEnableButton = () => {
-    return name !== '' && email !== '' && error === null;
+    return (
+      name !== '' && email !== '' && nameError === null && emailError !== ''
+    );
   };
 
   return (
@@ -100,13 +103,14 @@ const ProfileScreen = () => {
         editable={isInEditMode}
         inputStyle={ProfileScreenStyles.input}
         placeholder="Name"
+        errorMessage={nameError}
       />
       <CredentialTextInput
         value={email}
         onChangeText={onChangeEmail}
         editable={isInEditMode}
         placeholder="Email"
-        errorMessage={error}
+        errorMessage={emailError}
       />
       {isInEditMode ? (
         <FilledButton
