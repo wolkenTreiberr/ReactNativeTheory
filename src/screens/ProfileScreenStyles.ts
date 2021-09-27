@@ -19,7 +19,7 @@ const ProfileScreenStyle = StyleSheet.create({
     left: 20,
   },
   input: {
-    marginBottom: 15,
+    marginBottom: 5,
   },
 });
 

@@ -68,7 +68,7 @@ const ProfileScreen = () => {
   };
 
   const isEnableButton = () => {
-    return name !== '' && email !== '';
+    return name !== '' && email !== '' && error === null;
   };
 
   return (

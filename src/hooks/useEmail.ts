@@ -12,7 +12,9 @@ const useEmail = (initialValue: string) => {
     } else if (regEx.test(validatedValue)) {
       setError(null);
     } else {
-      setError('Error: invalid email');
+      setError(
+        "Invalid email address. Email must contain only latin letters, numbers, '@' and '.'",
+      );
     }
   };
 
