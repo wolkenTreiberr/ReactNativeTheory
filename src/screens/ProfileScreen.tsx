@@ -1,5 +1,5 @@
 import React from 'react';
-import ProfileScreenStyle from './ProfileScreenStyles';
+import ProfileScreenStyles from './ProfileScreenStyles';
 import ImagePicker from 'react-native-image-crop-picker';
 import UserAvatar from '../components/UserAvatar';
 import BackgroundForm from '../components/BackgroundForm';
@@ -65,7 +65,7 @@ class ProfileScreen extends React.Component<{}, ProfileScreenState> {
   render() {
     return (
       <BackgroundForm
-        containerStyle={ProfileScreenStyle.viewContainer}
+        containerStyle={ProfileScreenStyles.viewContainer}
         prepend={[
           <Header
             title="My profile"
@@ -75,7 +75,7 @@ class ProfileScreen extends React.Component<{}, ProfileScreenState> {
           />,
         ]}>
         <UserAvatar
-          avatarStyle={ProfileScreenStyle.avatar}
+          avatarStyle={ProfileScreenStyles.avatar}
           onPress={this.chooseAvatarFromLibrary}
           avatarImage={this.state.image}
           isInEditMode={this.state.isInEditMode}
@@ -93,7 +93,7 @@ class ProfileScreen extends React.Component<{}, ProfileScreenState> {
           value={this.state.name}
           onChangeText={this.onChangeName}
           editable={this.state.isInEditMode}
-          inputStyle={ProfileScreenStyle.input}
+          inputStyle={ProfileScreenStyles.input}
           placeholder="Name"
         />
         <CredentialTextInput
@@ -104,14 +104,14 @@ class ProfileScreen extends React.Component<{}, ProfileScreenState> {
         />
         {this.state.isInEditMode ? (
           <FilledButton
-            filledButtonStyle={ProfileScreenStyle.filledButton}
+            filledButtonStyle={ProfileScreenStyles.filledButton}
             title="Update profile"
             onPress={() => this.editModeOff()}
             disabled={!this.isEnableButton()}
           />
         ) : (
           <FilledButton
-            filledButtonStyle={ProfileScreenStyle.filledButton}
+            filledButtonStyle={ProfileScreenStyles.filledButton}
             title="Show state"
             onPress={() => console.log(this.state)}
           />

@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 
-const TextButtonStyles = StyleSheet.create({
+const UserAvatarStyles = StyleSheet.create({
   imageBackground: {
     width: 90,
     height: 90,
@@ -16,4 +16,4 @@ const TextButtonStyles = StyleSheet.create({
   },
 });
 
-export default TextButtonStyles;
+export default UserAvatarStyles;
