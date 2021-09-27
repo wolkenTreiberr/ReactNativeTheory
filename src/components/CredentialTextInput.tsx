@@ -9,6 +9,7 @@ interface CredentialTextInputProps {
   onChangeText?(text: string): void;
   inputStyle?: object;
   editable?: boolean;
+  errorMessage?: string | null;
 }
 
 class CredentialTextInput extends React.Component<CredentialTextInputProps> {

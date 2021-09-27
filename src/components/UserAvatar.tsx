@@ -5,7 +5,7 @@ import UserAvatarStyles from './UserAvatarStyles';
 
 interface UserAvatarProps {
   avatarStyle?: object;
-  avatarImage: object;
+  avatarImage: object | string;
   disabled: boolean;
   isInEditMode: boolean;
   onPress(): void;
@@ -22,7 +22,7 @@ class UserAvatar extends React.Component<UserAvatarProps, {}> {
         <ImageBackground
           style={UserAvatarStyles.imageBackground}
           source={this.props.avatarImage}
-          imageStyle={{borderRadius: 15}}>
+          imageStyle={UserAvatarStyles.image}>
           {this.props.isInEditMode && (
             <Entypo
               name="images"
