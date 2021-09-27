@@ -10,7 +10,7 @@ interface Header {
   isEditable?: boolean;
 }
 
-class Header extends React.Component<Header, {}> {
+class Header extends React.Component<any, Header> {
   render() {
     return (
       <View style={HeaderStyles.headerContainer}>

@@ -5,7 +5,7 @@ import UserAvatarStyles from './UserAvatarStyles';
 
 interface UserAvatarProps {
   avatarStyle?: object;
-  avatarImage: object | string;
+  avatarImage: string;
   disabled: boolean;
   isInEditMode: boolean;
   onPress(): void;

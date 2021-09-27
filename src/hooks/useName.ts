@@ -5,7 +5,7 @@ const useName = (initialValue: string) => {
   const [nameError, setError] = useState<null | string>(null);
 
   const validateName = (validatedValue: string) => {
-    const regEx = /^([a-zA-Z][a-zA-Z]{2,20})?$/;
+    const regEx = /^([a-z0-9A-Z]{3,20})?$/;
 
     if (validatedValue === '') {
       setError(null);
@@ -13,7 +13,7 @@ const useName = (initialValue: string) => {
       setError(null);
     } else {
       setError(
-        'Invalid user name. Nmae must contain only latin letters and numbers',
+        'Invalid user name. Name must contain only latin letters and numbers',
       );
     }
   };
@@ -24,7 +24,7 @@ const useName = (initialValue: string) => {
     validateName(value);
   };
 
-  return [name, nameError, setName] as const;
+  return {name, nameError, setName};
 };
 
 export default useName;

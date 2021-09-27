@@ -24,7 +24,7 @@ const useEmail = (initialValue: string) => {
     validateEmail(value);
   };
 
-  return [email, emailError, setEmail] as const;
+  return {email, emailError, setEmail};
 };
 
 export default useEmail;

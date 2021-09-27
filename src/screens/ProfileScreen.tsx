@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 import React, {useState} from 'react';
 import ProfileScreenStyles from './ProfileScreenStyles';
 import ImagePicker from 'react-native-image-crop-picker';
@@ -24,8 +25,8 @@ const initialState = {
 
 const ProfileScreen = () => {
   const [state, setState] = useState<ProfileScreenState>(initialState);
-  const [name, nameError, setName] = useName('userName');
-  const [email, emailError, setEmail] = useEmail('userEmail@mail.com');
+  const {name, nameError, setName} = useName('userName');
+  const {email, emailError, setEmail} = useEmail('userEmail@mail.com');
   const [avatar, setAvatar] = useState<string>(
     require('../../images/avatar.jpg'),
   );
@@ -70,7 +71,7 @@ const ProfileScreen = () => {
 
   const isEnableButton = () => {
     return (
-      name !== '' && email !== '' && nameError === null && emailError !== ''
+      name !== '' && email !== '' && nameError === null && emailError === null
     );
   };
 
@@ -87,7 +88,7 @@ const ProfileScreen = () => {
       ]}>
       <UserAvatar
         avatarStyle={ProfileScreenStyles.avatar}
-        onPress={chooseAvatarFromLibrary(avatar, setAvatar)}
+        onPress={() => chooseAvatarFromLibrary(avatar, setAvatar)}
         avatarImage={avatar}
         isInEditMode={isInEditMode}
         disabled={!isInEditMode}
