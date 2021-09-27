@@ -2,50 +2,40 @@ import React from 'react';
 import {
   View,
   ImageBackground,
-  StatusBar,
-  StyleSheet,
   KeyboardAvoidingView,
+  Platform,
 } from 'react-native';
+import BackgroundFormStyles from './BackgroundFormStyles';
+
+const BackgroundImageUri: object = {
+  uri: 'https://images.pexels.com/photos/586744/pexels-photo-586744.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+};
+
 interface BackgroundFormProps {
   containerStyle: object;
-  prepend?: JSX.Element;
+  prepend?: JSX.Element[];
   append?: JSX.Element;
 }
-export default class BackgroundForm extends React.Component<
-  BackgroundFormProps,
-  {}
-> {
+
+export default class BackgroundForm extends React.Component<BackgroundFormProps> {
   render() {
     return (
       <ImageBackground
-        source={{
-          uri: 'https://images.pexels.com/photos/586744/pexels-photo-586744.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-        }}
-        style={styles.backgroundImage}>
-        <StatusBar barStyle="light-content" />
-
+        source={BackgroundImageUri}
+        style={BackgroundFormStyles.backgroundImage}>
         <View>{this.props.prepend}</View>
-
-        <KeyboardAvoidingView style={styles.backgroundImage}>
-          <View style={this.props.containerStyle}>{this.props.children}</View>
+        <KeyboardAvoidingView
+          style={BackgroundFormStyles.backgroundImage}
+          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+          <View
+            style={{
+              ...BackgroundFormStyles.viewContainer,
+              ...this.props.containerStyle,
+            }}>
+            {this.props.children}
+          </View>
         </KeyboardAvoidingView>
       </ImageBackground>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  backgroundImage: {
-    flex: 1,
-    justifyContent: 'flex-end',
-  },
-  viewStyle: {
-    paddingTop: 30,
-    paddingBottom: 50,
-    paddingHorizontal: 20,
-    width: '100%',
-    backgroundColor: 'white',
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-  },
-});
