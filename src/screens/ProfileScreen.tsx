@@ -1,5 +1,7 @@
-import React from 'react';
-import ProfileScreenstyles from './ProfileScreenstyles';
+/* eslint-disable no-shadow */
+import React, {useState} from 'react';
+import ProfileScreenStyles from './ProfileScreenStyles';
+
 import ImagePicker from 'react-native-image-crop-picker';
 import UserAvatar from '../components/UserAvatar';
 import BackgroundForm from '../components/BackgroundForm';
@@ -7,35 +9,45 @@ import CredentialTextInput from '../components/CredentialTextInput';
 import FilledButton from '../components/FilledButton';
 import FollowersBlock from '../components/FollowersBlock';
 import Header from '../components/Header';
+import useEmail from '../hooks/useEmail';
+import useName from '../hooks/useName';
 
 interface ProfileScreenState {
-  name: string;
-  email: string;
   followers: number;
   following: number;
-  image: object;
   isInEditMode: boolean;
 }
 
-class ProfileScreen extends React.Component<{}, ProfileScreenState> {
-  state = {
-    name: 'UserName',
-    email: 'UserEmail',
-    followers: 23,
-    following: 234,
-    image: require('../../images/avatar.jpg'),
-    isInEditMode: false,
+const initialState = {
+  followers: 23,
+  following: 234,
+  isInEditMode: false,
+};
+
+const ProfileScreen = () => {
+  const [state, setState] = useState<ProfileScreenState>(initialState);
+  const {name, nameError, setName} = useName('userName');
+  const {email, emailError, setEmail} = useEmail('userEmail@mail.com');
+  const [avatar, setAvatar] = useState<string>(
+    require('../../images/avatar.jpg'),
+  );
+  const {followers, following, isInEditMode} = state;
+
+  const editModeOn = () => {
+    setState(currentState => ({
+      ...currentState,
+      isInEditMode: true,
+    }));
   };
 
-  editModeOn = () => {
-    this.setState({isInEditMode: true});
+  const editModeOff = () => {
+    setState(currentState => ({
+      ...currentState,
+      isInEditMode: false,
+    }));
   };
 
-  editModeOff = () => {
-    this.setState({isInEditMode: false});
-  };
-
-  chooseAvatarFromLibrary = () => {
+  const chooseAvatarFromLibrary = (avatar: string, setAvatar: Function) => {
     ImagePicker.openPicker({
       width: 300,
       height: 400,
@@ -43,82 +55,81 @@ class ProfileScreen extends React.Component<{}, ProfileScreenState> {
     }).then(img => {
       const imageUri = img.path;
 
-      let image: any = {...this.state.image};
-      image.uri = imageUri;
+      let image: any = avatar;
+      image = imageUri;
 
-      this.setState({image});
+      setAvatar(image);
     });
   };
 
-  onChangeName = (value: string) => {
-    this.setState({name: value});
+  const onChangeName = (newName: string) => {
+    setName(newName);
   };
 
-  onChangeEmail = (value: string) => {
-    this.setState({email: value});
+  const onChangeEmail = (newEmail: string) => {
+    setEmail(newEmail);
   };
 
-  isEnableButton = () => {
-    return this.state.name !== '' && this.state.email !== '';
-  };
-
-  render() {
+  const isEnableButton = () => {
     return (
-      <BackgroundForm
-        containerStyle={ProfileScreenstyles.viewContainer}
-        prependedChildren={[
-          <Header
-            title=" My profile"
-            isEditable={true}
-            isInEditMode={this.state.isInEditMode}
-            onPress={this.editModeOn}
-          />,
-        ]}>
-        <UserAvatar
-          avatarStyle={ProfileScreenstyles.avatar}
-          onPress={this.chooseAvatarFromLibrary}
-          avatarImage={this.state.image}
-          isInEditMode={this.state.isInEditMode}
-          disabled={!this.state.isInEditMode}
-        />
-
-        {!this.state.isInEditMode && (
-          <FollowersBlock
-            followers={this.state.followers}
-            following={this.state.following}
-          />
-        )}
-
-        <CredentialTextInput
-          value={this.state.name}
-          onChangeText={this.onChangeName}
-          editable={this.state.isInEditMode}
-          inputStyle={ProfileScreenstyles.input}
-          placeholder="Name"
-        />
-        <CredentialTextInput
-          value={this.state.email}
-          onChangeText={this.onChangeEmail}
-          editable={this.state.isInEditMode}
-          placeholder="Email"
-        />
-        {this.state.isInEditMode ? (
-          <FilledButton
-            filledButtonStyle={ProfileScreenstyles.filledButton}
-            title="Update profile"
-            onPress={() => this.editModeOff()}
-            disabled={!this.isEnableButton()}
-          />
-        ) : (
-          <FilledButton
-            filledButtonStyle={ProfileScreenstyles.filledButton}
-            title="Show state"
-            onPress={() => console.log(this.state)}
-          />
-        )}
-      </BackgroundForm>
+      name !== '' && email !== '' && nameError === null && emailError === null
     );
-  }
-}
+  };
+
+  return (
+    <BackgroundForm
+      containerStyle={ProfileScreenstyles.viewContainer}
+      prepend={[
+        <Header
+          title="My profile"
+          isEditable={true}
+          isInEditMode={isInEditMode}
+          onPress={editModeOn}
+        />,
+      ]}>
+      <UserAvatar
+        avatarStyle={ProfileScreenstyles.avatar}
+        onPress={() => chooseAvatarFromLibrary(avatar, setAvatar)}
+        avatarImage={avatar}
+        isInEditMode={isInEditMode}
+        disabled={!isInEditMode}
+      />
+
+      {!isInEditMode && (
+        <FollowersBlock followers={followers} following={following} />
+      )}
+
+      <CredentialTextInput
+        value={name}
+        onChangeText={onChangeName}
+        editable={isInEditMode}
+        inputStyle={ProfileScreenstyles.input}
+        placeholder="Name"
+        errorMessage={nameError}
+      />
+      <CredentialTextInput
+        value={email}
+        onChangeText={onChangeEmail}
+        editable={isInEditMode}
+        placeholder="Email"
+        errorMessage={emailError}
+      />
+      {isInEditMode ? (
+        <FilledButton
+          filledButtonStyle={ProfileScreenstyles.filledButton}
+          title="Update profile"
+          onPress={editModeOff}
+          disabled={!isEnableButton()}
+        />
+      ) : (
+        <FilledButton
+          filledButtonStyle={ProfileScreenstyles.filledButton}
+          title="Show state"
+          onPress={() => console.log(state)}
+        />
+      )}
+    </BackgroundForm>
+  );
+};
 
 export default ProfileScreen;

@@ -1,5 +1,5 @@
 import React from 'react';
-import {TextInput, View} from 'react-native';
+import {TextInput, Text, View} from 'react-native';
 import CredentialTextInputstyles from './CredentialTextInputstyles';
 
 interface CredentialTextInputProps {
@@ -9,6 +9,7 @@ interface CredentialTextInputProps {
   onChangeText?(text: string): void;
   inputStyle?: object;
   editable?: boolean;
+  errorMessage?: string | null;
 }
 
 class CredentialTextInput extends React.Component<CredentialTextInputProps> {
@@ -22,10 +23,15 @@ class CredentialTextInput extends React.Component<CredentialTextInputProps> {
           placeholder={this.props.placeholder}
           secureTextEntry={this.props.secureTextEntry}
           style={{
-            ...CredentialTextInputstyles.textInput,
+            ...CredentialTextInputStyles.textInput,
             ...this.props.inputStyle,
           }}
         />
+        <View style={CredentialTextInputStyles.errorsWrapper}>
+          <Text style={CredentialTextInputStyles.errorMessage}>
+            {this.props.errorMessage}
+          </Text>
+        </View>
       </View>
     );
   }

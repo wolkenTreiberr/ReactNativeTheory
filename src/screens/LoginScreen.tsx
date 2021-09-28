@@ -6,58 +6,56 @@ import CredentialTextInput from '../components/CredentialTextInput';
 import FilledButton from '../components/FilledButton';
 import SocialNetworkForm from '../components/SocialNetworkForm';
 import TextButton from '../components/TextButton';
+// import useDeviceOrientation from '../hooks/useDeviceOrientation';
 
 interface LoginScreenState {
   email: string;
   password: string;
 }
 
-class LoginScreen extends React.Component<{}, LoginScreenState> {
-  state = {
-    email: '',
-    password: '',
-  };
+const LoginScreen = () => {
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  // const orientation = useDeviceOrientation;
 
-  render() {
-    return (
-      <BackgroundForm containerStyle={LoginScreenstyles.viewContainer}>
-        <View style={LoginScreenstyles.inputContainer}>
-          <CredentialTextInput
-            value={this.state.email}
-            onChangeText={email => this.setState({email})}
-            inputStyle={LoginScreenstyles.input}
-            placeholder="Email"
-          />
-          <CredentialTextInput
-            value={this.state.password}
-            onChangeText={password => this.setState({password})}
-            placeholder="Password"
-            secureTextEntry={true}
-          />
-        </View>
-        <TextButton
-          title="Forget password?"
-          align="flex-start"
-          color="rgb(64, 80, 164)"
-          textButtonStyle={LoginScreenstyles.textButton}
+  return (
+    <BackgroundForm containerStyle={LoginScreenstyles.viewContainer}>
+      <View style={LoginScreenstyles.inputContainer}>
+        <CredentialTextInput
+          value={email}
+          onChangeText={newEmail => setEmail(newEmail)}
+          inputStyle={LoginScreenstyles.input}
+          placeholder="Email"
         />
-        <FilledButton
-          onPress={() =>
-            console.log('"Sign in" button was pressed', this.state)
-          }
-          title="Sign In"
+        <CredentialTextInput
+          value={password}
+          onChangeText={newPassword => setPassword(newPassword)}
+          placeholder="Password"
+          secureTextEntry={true}
         />
-        <Text style={LoginScreenstyles.orSignWith}>or sign with</Text>
-        <SocialNetworkForm />
-        <TextButton
-          title="Don’t have an account?"
-          align="center"
-          color="rgb(181, 182, 221)"
-          textButtonStyle={{marginTop: 30}}
-        />
-      </BackgroundForm>
-    );
-  }
-}
+      </View>
+      <TextButton
+        title="Forget password?"
+        align="flex-start"
+        color="rgb(64, 80, 164)"
+        textButtonStyle={LoginScreenstyles.textButton}
+      />
+      <FilledButton
+        onPress={() =>
+          console.log('"Sign in" button was pressed', email, password)
+        }
+        title="Sign In"
+      />
+      <Text style={LoginScreenstyles.orSignWith}>or sign with</Text>
+      <SocialNetworkForm />
+      <TextButton
+        title="Don’t have an account?"
+        align="center"
+        color="rgb(181, 182, 221)"
+        textButtonStyle={LoginScreenstyles.dontHaveAnAccount}
+      />
+    </BackgroundForm>
+  );
+};
 
 export default LoginScreen;

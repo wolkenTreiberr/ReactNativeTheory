@@ -26,6 +26,9 @@ const AddPeopleScreenstyle = StyleSheet.create({
     fontSize: 13,
     color: 'rgb(181, 182, 221)',
   },
+  dontHaveAnAccount: {
+    marginTop: 30,
+  },
 });
 
 export default AddPeopleScreenstyle;

@@ -7,6 +7,9 @@ const UserAvatarstyles = StyleSheet.create({
     right: -5,
     top: -5,
   },
+  image: {
+    borderRadius: 15,
+  },
   icon: {
     position: 'absolute',
     opacity: 1,
