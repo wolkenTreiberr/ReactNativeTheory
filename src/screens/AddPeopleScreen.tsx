@@ -6,7 +6,6 @@ import {
   Text,
 } from 'react-native';
 import AddPeopleScreenstyles from './AddPeopleScreenstyles';
-import produce from 'immer';
 import BackgroundForm from '../components/BackgroundForm';
 import Header from '../components/Header';
 import PersonCell from '../components/PersonCell';
@@ -134,19 +133,23 @@ function AddPeopleScreen() {
 
   const [search, setSearch] = useState('');
 
-  const toggleSelect = useCallback((id: string) => {
-    setPeople(
-      produce(draft => {
-        draft.map(item => {
-          return item.data.find(subItem => {
-            if (subItem.id === id) {
-              subItem.isAdded = !subItem.isAdded;
+  const toggleSelect = useCallback(
+    (id: string) => {
+      setPeople(
+        people.filter(person => {
+          const personData = person.data;
+          const selectedPerson = personData.filter(item => {
+            if (item.id === id) {
+              item.isAdded = !item.isAdded;
             }
+            return item;
           });
-        });
-      }),
-    );
-  }, []);
+          return selectedPerson;
+        }),
+      );
+    },
+    [people],
+  );
 
   const renderItem = ({item}: ListRenderItemInfo<Person>) => {
     return <PersonCell person={item} onPress={() => toggleSelect(item.id)} />;
