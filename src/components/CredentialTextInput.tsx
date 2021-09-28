@@ -1,6 +1,6 @@
 import React from 'react';
 import {TextInput, Text, View} from 'react-native';
-import CredentialTextInputStyles from './CredentialTextInputStyles';
+import CredentialTextInputstyles from './CredentialTextInputstyles';
 
 interface CredentialTextInputProps {
   placeholder: string;

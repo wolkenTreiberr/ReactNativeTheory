@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Text, View} from 'react-native';
-import FollowersBlockStyles from './FollowersBlockStyles';
+import FollowersBlockstyles from './FollowersBlockstyles';
 
 interface FollowersBlockProps {
   followers: number;
@@ -10,18 +10,18 @@ interface FollowersBlockProps {
 class FollowersBlock extends Component<FollowersBlockProps, {}> {
   render() {
     return (
-      <View style={FollowersBlockStyles.userInfoContainer}>
-        <View style={FollowersBlockStyles.infoSection}>
-          <Text style={FollowersBlockStyles.sectionNumber}>
+      <View style={FollowersBlockstyles.userInfoContainer}>
+        <View style={FollowersBlockstyles.infoSection}>
+          <Text style={FollowersBlockstyles.sectionNumber}>
             {this.props.followers}
           </Text>
-          <Text style={FollowersBlockStyles.sectionText}>Followers</Text>
+          <Text style={FollowersBlockstyles.sectionText}>Followers</Text>
         </View>
-        <View style={FollowersBlockStyles.infoSection}>
-          <Text style={FollowersBlockStyles.sectionNumber}>
+        <View style={FollowersBlockstyles.infoSection}>
+          <Text style={FollowersBlockstyles.sectionNumber}>
             {this.props.following}
           </Text>
-          <Text style={FollowersBlockStyles.sectionText}>Following</Text>
+          <Text style={FollowersBlockstyles.sectionText}>Following</Text>
         </View>
       </View>
     );

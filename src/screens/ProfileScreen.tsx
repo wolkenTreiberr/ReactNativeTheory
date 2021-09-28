@@ -1,6 +1,7 @@
 /* eslint-disable no-shadow */
 import React, {useState} from 'react';
 import ProfileScreenStyles from './ProfileScreenStyles';
+
 import ImagePicker from 'react-native-image-crop-picker';
 import UserAvatar from '../components/UserAvatar';
 import BackgroundForm from '../components/BackgroundForm';
@@ -77,7 +78,7 @@ const ProfileScreen = () => {
 
   return (
     <BackgroundForm
-      containerStyle={ProfileScreenStyles.viewContainer}
+      containerStyle={ProfileScreenstyles.viewContainer}
       prepend={[
         <Header
           title="My profile"
@@ -87,7 +88,7 @@ const ProfileScreen = () => {
         />,
       ]}>
       <UserAvatar
-        avatarStyle={ProfileScreenStyles.avatar}
+        avatarStyle={ProfileScreenstyles.avatar}
         onPress={() => chooseAvatarFromLibrary(avatar, setAvatar)}
         avatarImage={avatar}
         isInEditMode={isInEditMode}
@@ -102,7 +103,7 @@ const ProfileScreen = () => {
         value={name}
         onChangeText={onChangeName}
         editable={isInEditMode}
-        inputStyle={ProfileScreenStyles.input}
+        inputStyle={ProfileScreenstyles.input}
         placeholder="Name"
         errorMessage={nameError}
       />
@@ -115,14 +116,14 @@ const ProfileScreen = () => {
       />
       {isInEditMode ? (
         <FilledButton
-          filledButtonStyle={ProfileScreenStyles.filledButton}
+          filledButtonStyle={ProfileScreenstyles.filledButton}
           title="Update profile"
           onPress={editModeOff}
           disabled={!isEnableButton()}
         />
       ) : (
         <FilledButton
-          filledButtonStyle={ProfileScreenStyles.filledButton}
+          filledButtonStyle={ProfileScreenstyles.filledButton}
           title="Show state"
           onPress={() => console.log(state)}
         />

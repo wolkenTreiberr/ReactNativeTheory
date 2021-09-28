@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 
-const FilledButtonStyles = StyleSheet.create({
+const FilledButtonstyles = StyleSheet.create({
   button: {
     width: '100%',
     height: 50,
@@ -15,4 +15,4 @@ const FilledButtonStyles = StyleSheet.create({
   },
 });
 
-export default FilledButtonStyles;
+export default FilledButtonstyles;

@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 
-const AddPeopleScreenStyle = StyleSheet.create({
+const AddPeopleScreenstyle = StyleSheet.create({
   viewContainer: {
     paddingTop: 30,
     paddingBottom: 50,
@@ -31,4 +31,4 @@ const AddPeopleScreenStyle = StyleSheet.create({
   },
 });
 
-export default AddPeopleScreenStyle;
+export default AddPeopleScreenstyle;

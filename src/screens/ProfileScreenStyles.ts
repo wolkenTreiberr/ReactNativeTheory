@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 
-const ProfileScreenStyle = StyleSheet.create({
+const ProfileScreenstyle = StyleSheet.create({
   viewContainer: {
     flex: 0.9,
     paddingTop: 60,
@@ -23,4 +23,4 @@ const ProfileScreenStyle = StyleSheet.create({
   },
 });
 
-export default ProfileScreenStyle;
+export default ProfileScreenstyle;

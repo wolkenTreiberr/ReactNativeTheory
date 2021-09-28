@@ -5,7 +5,7 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from 'react-native';
-import BackgroundFormStyles from './BackgroundFormStyles';
+import BackgroundFormstyles from './BackgroundFormstyles';
 
 const BackgroundImageUri: object = {
   uri: 'https://images.pexels.com/photos/586744/pexels-photo-586744.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
@@ -13,8 +13,8 @@ const BackgroundImageUri: object = {
 
 interface BackgroundFormProps {
   containerStyle: object;
-  prepend?: JSX.Element[];
-  append?: JSX.Element;
+  prependedChildren?: JSX.Element[];
+  appendedChildren?: JSX.Element;
 }
 
 export default class BackgroundForm extends React.Component<BackgroundFormProps> {
@@ -22,14 +22,14 @@ export default class BackgroundForm extends React.Component<BackgroundFormProps>
     return (
       <ImageBackground
         source={BackgroundImageUri}
-        style={BackgroundFormStyles.backgroundImage}>
-        <View>{this.props.prepend}</View>
+        style={BackgroundFormstyles.backgroundImage}>
+        <View>{this.props.prependedChildren}</View>
         <KeyboardAvoidingView
-          style={BackgroundFormStyles.backgroundImage}
+          style={BackgroundFormstyles.backgroundImage}
           behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
           <View
             style={{
-              ...BackgroundFormStyles.viewContainer,
+              ...BackgroundFormstyles.viewContainer,
               ...this.props.containerStyle,
             }}>
             {this.props.children}
