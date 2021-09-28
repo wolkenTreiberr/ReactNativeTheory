@@ -1,6 +1,8 @@
 import React from 'react';
-import {ImageBackground, StyleSheet, TouchableOpacity} from 'react-native';
+import {ImageBackground, TouchableOpacity} from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
+import UserAvatarstyles from './UserAvatarstyles';
+
 interface UserAvatarProps {
   avatarStyle?: object;
   avatarImage: object;
@@ -8,6 +10,7 @@ interface UserAvatarProps {
   isInEditMode: boolean;
   onPress(): void;
 }
+
 class UserAvatar extends React.Component<UserAvatarProps, {}> {
   render() {
     return (
@@ -17,7 +20,7 @@ class UserAvatar extends React.Component<UserAvatarProps, {}> {
         disabled={this.props.disabled}
         style={this.props.avatarStyle}>
         <ImageBackground
-          style={styles.imageBackgroud}
+          style={UserAvatarstyles.imageBackground}
           source={this.props.avatarImage}
           imageStyle={{borderRadius: 15}}>
           {this.props.isInEditMode && (
@@ -25,7 +28,7 @@ class UserAvatar extends React.Component<UserAvatarProps, {}> {
               name="images"
               size={20}
               color="white"
-              style={styles.iconStyle}
+              style={UserAvatarstyles.icon}
             />
           )}
         </ImageBackground>
@@ -33,21 +36,5 @@ class UserAvatar extends React.Component<UserAvatarProps, {}> {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  imageBackgroud: {
-    width: 90,
-    height: 90,
-    right: -5,
-    top: -5,
-  },
-  iconStyle: {
-    position: 'absolute',
-    opacity: 1,
-    overflow: 'hidden',
-    right: 4,
-    bottom: 3,
-  },
-});
 
 export default UserAvatar;

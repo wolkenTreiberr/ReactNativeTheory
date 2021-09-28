@@ -1,11 +1,12 @@
 import React from 'react';
-import {View, StyleSheet, Platform} from 'react-native';
-
+import {View, Platform} from 'react-native';
 import SocialNetworkButton from './SocialNetworkButton';
+import SocialNetworkFormstyles from './SocialNetworkFormstyles';
+
 class SocialNetworkButtonsForm extends React.Component {
   render() {
     return (
-      <View style={styles.containerStyle}>
+      <View style={SocialNetworkFormstyles.ViewContainer}>
         <SocialNetworkButton
           image={require('../../images/facebook-icon.png')}
         />
@@ -19,14 +20,5 @@ class SocialNetworkButtonsForm extends React.Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  containerStyle: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    marginBottom: 40,
-  },
-});
 
 export default SocialNetworkButtonsForm;
