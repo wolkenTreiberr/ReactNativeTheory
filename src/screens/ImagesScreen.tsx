@@ -26,6 +26,7 @@ export interface ImagesScreenState {
 
 const ImagesScreen = () => {
   const [state, setState] = useState({images: [] as PhotoModel[]});
+  const refreshing = false;
   const imageApi = new ImageApi<PhotoDataResponse>();
 
   const renderItem = (itemInfo: ListRenderItemInfo<PhotoModel>) => {
@@ -143,6 +144,7 @@ const ImagesScreen = () => {
         style={ImagesScreenstyle.flatList}
         data={state.images}
         renderItem={renderItem}
+        refreshing={refreshing}
         ListEmptyComponent={ListEmptyComponent}
         ItemSeparatorComponent={ItemSeparatorComponent}
       />

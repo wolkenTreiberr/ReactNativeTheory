@@ -22,7 +22,7 @@ export default class BackgroundForm extends React.Component<BackgroundFormProps>
   render() {
     return (
       <ImageBackground
-        source={!this.props.formBackgroundColor ? BackgroundImageUri : ''}
+        source={BackgroundImageUri}
         style={
           !this.props.formBackgroundColor
             ? BackgroundFormstyles.backgroundImage

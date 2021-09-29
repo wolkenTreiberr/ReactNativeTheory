@@ -1,6 +1,7 @@
 const baseUrl = 'https://api.unsplash.com';
 const photos = '/photos';
 const clientId = '8yscgpqKnOpuLMXmZ5loknhKeLM3i8UKT0be71pLFCw';
+const token = 'UCeMiPKh-3s_9gkMwZicdX-cVYd0apZFYgk39HtiNDo';
 
 export interface ImageApiInterface<T> {
   fetchPhotos(): Promise<Array<T>>;
@@ -11,18 +12,12 @@ export class ImageApi<T> implements ImageApiInterface<T> {
     path: string = photos,
     mehtod: string = 'GET',
   ): Promise<Response> {
-    return fetch(
-      baseUrl +
-        path +
-        '/?client_id=8yscgpqKnOpuLMXmZ5loknhKeLM3i8UKT0be71pLFCw',
-      {
-        method: mehtod,
-        headers: {
-          Accept: 'application/json',
-          Authorization: `CLIENT-ID ${clientId}`,
-        },
+    return fetch(baseUrl + path + `?client_id=${clientId}`, {
+      method: mehtod,
+      headers: {
+        Accept: 'application/json',
       },
-    );
+    });
   }
 
   async fetchPhotos(): Promise<Array<T>> {
@@ -33,15 +28,25 @@ export class ImageApi<T> implements ImageApiInterface<T> {
       });
   }
 
+  private async authentication(id: string, method: string): Promise<Response> {
+    return fetch(`${baseUrl}/photos/${id}/like`, {
+      method: method,
+      headers: {
+        Accept: 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  }
+
   async likePhoto(id: string): Promise<T> {
-    return this.init(`/photos/${id}/like`, 'POST')
+    return this.authentication(id, 'POST')
       .then(response => response.json())
       .then(data => {
         return data as T;
       });
   }
   async unlikePhoto(id: string): Promise<T> {
-    return this.init(`/photos/${id}/like`, 'DELETE')
+    return this.authentication(id, 'DELETE')
       .then(response => response.json())
       .then(data => {
         return data as T;
