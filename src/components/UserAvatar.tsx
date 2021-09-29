@@ -22,7 +22,7 @@ class UserAvatar extends React.Component<UserAvatarProps, {}> {
         <ImageBackground
           style={UserAvatarstyles.imageBackground}
           source={this.props.avatarImage}
-          imageStyle={UserAvatarStyles.image}>
+          imageStyle={UserAvatarstyles.image}>
           {this.props.isInEditMode && (
             <Entypo
               name="images"

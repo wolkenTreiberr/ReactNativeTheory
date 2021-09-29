@@ -1,6 +1,6 @@
 /* eslint-disable no-shadow */
 import React, {useState} from 'react';
-import ProfileScreenStyles from './ProfileScreenStyles';
+import ProfileScreenstyles from './ProfileScreenstyles';
 
 import ImagePicker from 'react-native-image-crop-picker';
 import UserAvatar from '../components/UserAvatar';
@@ -79,7 +79,7 @@ const ProfileScreen = () => {
   return (
     <BackgroundForm
       containerStyle={ProfileScreenstyles.viewContainer}
-      prepend={[
+      prependedChildren={[
         <Header
           title="My profile"
           isEditable={true}

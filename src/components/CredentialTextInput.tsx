@@ -23,12 +23,12 @@ class CredentialTextInput extends React.Component<CredentialTextInputProps> {
           placeholder={this.props.placeholder}
           secureTextEntry={this.props.secureTextEntry}
           style={{
-            ...CredentialTextInputStyles.textInput,
+            ...CredentialTextInputstyles.textInput,
             ...this.props.inputStyle,
           }}
         />
-        <View style={CredentialTextInputStyles.errorsWrapper}>
-          <Text style={CredentialTextInputStyles.errorMessage}>
+        <View style={CredentialTextInputstyles.errorsWrapper}>
+          <Text style={CredentialTextInputstyles.errorMessage}>
             {this.props.errorMessage}
           </Text>
         </View>

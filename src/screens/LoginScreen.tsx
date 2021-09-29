@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Text, View} from 'react-native';
 import LoginScreenstyles from './LoginScreenstyles';
 import BackgroundForm from '../components/BackgroundForm';
