@@ -13,6 +13,7 @@ const BackgroundImageUri: object = {
 
 interface BackgroundFormProps {
   containerStyle: object;
+  formBackgroundColor?: string;
   prependedChildren?: JSX.Element[];
   appendedChildren?: JSX.Element;
 }
@@ -21,8 +22,12 @@ export default class BackgroundForm extends React.Component<BackgroundFormProps>
   render() {
     return (
       <ImageBackground
-        source={BackgroundImageUri}
-        style={BackgroundFormstyles.backgroundImage}>
+        source={this.props.formBackgroundColor ? BackgroundImageUri : ''}
+        style={
+          this.props.formBackgroundColor
+            ? BackgroundFormstyles.backgroundImage
+            : BackgroundFormstyles.backgroundColor
+        }>
         <View>{this.props.prependedChildren}</View>
         <KeyboardAvoidingView
           style={BackgroundFormstyles.backgroundImage}
