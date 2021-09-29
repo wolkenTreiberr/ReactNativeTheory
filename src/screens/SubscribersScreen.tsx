@@ -10,7 +10,7 @@ export interface SubscriberItem {
   title: string;
   description: string;
   isFollowing: boolean;
-  id: string;
+  key: string;
 }
 
 function SubscribersScreen() {
@@ -20,77 +20,77 @@ function SubscribersScreen() {
       title: 'First user',
       description: 'Description...',
       isFollowing: true,
-      id: '1',
+      key: '1',
     },
     {
       image: require('../../images/avatar.jpg'),
       title: 'Second user',
       description: 'Description...',
       isFollowing: false,
-      id: '2',
+      key: '2',
     },
     {
       image: require('../../images/avatar.jpg'),
       title: 'First user',
       description: 'Description...',
       isFollowing: true,
-      id: '3',
+      key: '3',
     },
     {
       image: require('../../images/avatar.jpg'),
       title: 'Second user',
       description: 'Description...',
       isFollowing: false,
-      id: '4',
+      key: '4',
     },
     {
       image: require('../../images/avatar.jpg'),
       title: 'First user',
       description: 'Description...',
       isFollowing: true,
-      id: '5',
+      key: '5',
     },
     {
       image: require('../../images/avatar.jpg'),
       title: 'Second user',
       description: 'Description...',
       isFollowing: false,
-      id: '6',
+      key: '6',
     },
     {
       image: require('../../images/avatar.jpg'),
       title: 'First user',
       description: 'Description...',
       isFollowing: true,
-      id: '7',
+      key: '7',
     },
     {
       image: require('../../images/avatar.jpg'),
       title: 'Second user',
       description: 'Description...',
       isFollowing: false,
-      id: '8',
+      key: '8',
     },
     {
       image: require('../../images/avatar.jpg'),
       title: 'First user',
       description: 'Description...',
       isFollowing: true,
-      id: '9',
+      key: '9',
     },
     {
       image: require('../../images/avatar.jpg'),
       title: 'Second user',
       description: 'Description...',
       isFollowing: false,
-      id: '10',
+      key: '10',
     },
   ]);
 
-  const toggleFollow = (id: string) => {
+  const toggleFollow = (key: string) => {
     setSubscribers(
       subscribers.filter(item => {
-        if (item.id === id) {
+        if (item.key === key) {
           item.isFollowing = !item.isFollowing;
         }
         return item;
@@ -102,7 +102,7 @@ function SubscribersScreen() {
     return (
       <SubscriberCell
         subscriber={item}
-        onPressFollowButton={() => toggleFollow(item.id)}
+        onPressFollowButton={() => toggleFollow(item.key)}
       />
     );
   };
@@ -115,7 +115,7 @@ function SubscribersScreen() {
         style={SubscribersScreenstyle.flatList}
         data={subscribers}
         renderItem={renderItem}
-        keyExtractor={item => item.id}
+        keyExtractor={item => item.key}
       />
     </BackgroundForm>
   );

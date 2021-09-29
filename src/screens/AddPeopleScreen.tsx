@@ -195,6 +195,7 @@ function AddPeopleScreen() {
       <SectionList
         sections={filteredData}
         renderItem={renderItem}
+        keyExtractor={item => item.id}
         renderSectionHeader={({section: {title}}) => (
           <Text style={AddPeopleScreenstyles.sectionHeader}>{title}</Text>
         )}
