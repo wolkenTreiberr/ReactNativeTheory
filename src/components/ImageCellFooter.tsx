@@ -4,8 +4,8 @@ import {Queue} from 'react-native-spacing-system';
 import ImageCellFooterstyles from './ImageCellFooterstyles';
 
 interface ImageCellFooterProps {
-  likes?: number;
-  liked?: boolean;
+  likesCounter?: number;
+  isLiked?: boolean;
   onPress: () => void;
 }
 
@@ -19,14 +19,16 @@ const ImageCellFooter = (props: ImageCellFooterProps) => {
         <Image
           source={require('../../images/likes.png')}
           style={
-            props.liked
+            props.isLiked
               ? ImageCellFooterstyles.likeButton
               : ImageCellFooterstyles.unlikeButton
           }
         />
       </TouchableOpacity>
       <Queue size={15} />
-      <Text style={ImageCellFooterstyles.likesCounter}>{props.likes}</Text>
+      <Text style={ImageCellFooterstyles.likesCounter}>
+        {props.likesCounter}
+      </Text>
     </View>
   );
 };

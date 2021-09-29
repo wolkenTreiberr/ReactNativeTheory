@@ -11,7 +11,7 @@ const BackgroundImageUri: object = {
   uri: 'https://images.pexels.com/photos/586744/pexels-photo-586744.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
 };
 
-interface BackgroundFormProps {
+export interface BackgroundFormProps {
   containerStyle: object;
   formBackgroundColor?: string;
   prependedChildren?: JSX.Element[];
@@ -22,9 +22,9 @@ export default class BackgroundForm extends React.Component<BackgroundFormProps>
   render() {
     return (
       <ImageBackground
-        source={this.props.formBackgroundColor ? BackgroundImageUri : ''}
+        source={!this.props.formBackgroundColor ? BackgroundImageUri : ''}
         style={
-          this.props.formBackgroundColor
+          !this.props.formBackgroundColor
             ? BackgroundFormstyles.backgroundImage
             : BackgroundFormstyles.backgroundColor
         }>
