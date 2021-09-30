@@ -134,11 +134,17 @@ const ImagesScreen = () => {
     fetchData();
   });
 
+  const childrenKeys = () => {
+    return Math.random().toString(36).substr(2, 9);
+  };
+
   return (
     <BackgroundForm
       containerStyle={ImagesScreenstyle.additionalView}
       formBackgroundColor={'darkslategrey'}
-      prependedChildren={[<Header title="Images" isEditable={false} />]}>
+      prependedChildren={[
+        <Header title="Images" isEditable={false} key={childrenKeys()} />,
+      ]}>
       <FlatList<PhotoModel>
         keyExtractor={(_, index) => String(index)}
         style={ImagesScreenstyle.flatList}
