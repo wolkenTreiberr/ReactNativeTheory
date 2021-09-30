@@ -10,6 +10,9 @@ import BackgroundFormstyles from './BackgroundFormstyles';
 const BackgroundImageUri: object = {
   uri: 'https://images.pexels.com/photos/586744/pexels-photo-586744.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
 };
+const EmptyBackgroundUri: object = {
+  uri: '#',
+};
 
 export interface BackgroundFormProps {
   containerStyle: object;
@@ -22,11 +25,18 @@ export default class BackgroundForm extends React.Component<BackgroundFormProps>
   render() {
     return (
       <ImageBackground
-        source={BackgroundImageUri}
+        source={
+          !this.props.formBackgroundColor
+            ? BackgroundImageUri
+            : EmptyBackgroundUri
+        }
         style={
           !this.props.formBackgroundColor
             ? BackgroundFormstyles.backgroundImage
-            : BackgroundFormstyles.backgroundColor
+            : {
+                ...BackgroundFormstyles.backgroundImage,
+                backgroundColor: this.props.formBackgroundColor,
+              }
         }>
         <View>{this.props.prependedChildren}</View>
         <KeyboardAvoidingView

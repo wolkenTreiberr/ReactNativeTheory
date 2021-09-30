@@ -5,10 +5,6 @@ const BackgroundFormstyles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-end',
   },
-  backgroundColor: {
-    flex: 1,
-    backgroundColor: 'darkslategrey',
-  },
   viewContainer: {
     paddingTop: 30,
     paddingBottom: 50,
