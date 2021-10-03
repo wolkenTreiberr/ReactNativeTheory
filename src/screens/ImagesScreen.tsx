@@ -110,29 +110,31 @@ const ImagesScreen = () => {
       .catch(error => console.log(error));
   };
 
-  const fetchData = () => {
-    imageApi
-      .fetchPhotos()
-      .then((values: Array<PhotoDataResponse>) => {
-        setState({
-          images: values.map((value: PhotoDataResponse) => ({
-            id: value.id,
-            imageUrl: value.urls?.small,
-            isLiked: value.liked_by_user,
-            name: value.user?.name,
-            likesCount: value.likes,
-            profileImageUrl: value.user?.profile_image?.small,
-          })),
-        });
-      })
-      .catch(error => {
-        console.log('fetch error: ', error);
-      });
-  };
-
   useEffect(() => {
+    const fetchData = () => {
+      imageApi
+        .fetchPhotos()
+        .then((values: Array<PhotoDataResponse>) => {
+          setState({
+            images: values.map((value: PhotoDataResponse) => ({
+              id: value.id,
+              imageUrl: value.urls?.small,
+              isLiked: value.liked_by_user,
+              name: value.user?.name,
+              likesCount: value.likes,
+              profileImageUrl: value.user?.profile_image?.small,
+            })),
+          });
+        })
+        .catch(error => {
+          console.log('fetch error: ', error);
+        });
+    };
+
     fetchData();
-  });
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const childrenKeys = () => {
     return Math.random().toString(36).substr(2, 9);
