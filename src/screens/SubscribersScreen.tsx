@@ -107,10 +107,16 @@ function SubscribersScreen() {
     );
   };
 
+  const childrenKeys = () => {
+    return Math.random().toString(36).substr(2, 9);
+  };
+
   return (
     <BackgroundForm
       containerStyle={SubscribersScreenstyle.viewContainer}
-      prependedChildren={[<Header title="Subscribers" isEditable={false} />]}>
+      prependedChildren={[
+        <Header title="Subscribers" isEditable={false} key={childrenKeys()} />,
+      ]}>
       <FlatList
         style={SubscribersScreenstyle.flatList}
         data={subscribers}

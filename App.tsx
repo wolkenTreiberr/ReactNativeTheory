@@ -1,13 +1,14 @@
 import React from 'react';
-// import AddPeopleScreen from './src/screens/AddPeopleScreen';
-// import LoginScreen from './src/screens/LoginScreen';
-// import ProfileScreen from './src/screens/ProfileScreen';
-import SubscribersScreen from './src/screens/SubscribersScreen';
+import ImagesScreen from './src/screens/ImagesScreen';
+import {store} from './src/redux/store';
+import {Provider} from 'react-redux';
 
-class App extends React.Component {
-  render() {
-    return <SubscribersScreen />;
-  }
-}
+const App: React.FC<{}> = () => {
+  return (
+    <Provider store={store}>
+      <ImagesScreen />
+    </Provider>
+  );
+};
 
 export default App;
