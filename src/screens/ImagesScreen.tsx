@@ -1,33 +1,41 @@
-import React, {useState, useEffect} from 'react';
-import {ListRenderItemInfo, View, Text, FlatList} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {
+  ListRenderItemInfo,
+  View,
+  Text,
+  FlatList,
+  NativeSyntheticEvent,
+  TextInputChangeEventData,
+} from 'react-native';
 import {Stack} from 'react-native-spacing-system';
-import Header from '../components/Header';
+import {useAppDispatch, useAppSelector} from '../hooks/ReduxHooks';
+import {ImageApiInterface} from '../services/ImageApi';
+import {PhotoDataResponse} from '../services/PhotoDataResponse';
+import {PhotoModel} from '../redux/reducers/photosReducer';
+import {fetchLike} from '../redux/actions/async/fetchLike';
+import {fetchUnlike} from '../redux/actions/async/fetchUnlike';
+import {fetchPhotos} from '../redux/actions/async/fetchPhotos';
+import {fetchSearchData} from '../redux/actions/async/fetchSearchData';
 import BackgroundForm from '../components/BackgroundForm';
 import ImageCell from '../components/ImageCell';
-import ImageCellFooter from '../components/ImageCellFooter';
+import Header from '../components/Header';
 import ImagesScreenstyle from './ImagesScreenstyles';
-import {ImageApiInterface, ImageApi} from '../services/ImageApi';
-import {PhotoDataResponse} from '../services/ModelApi';
-import {PhotoLikeResponse} from '../services/PhotoLikeResponse';
-
-type PhotoModel = {
-  id: string;
-  imageUrl?: string;
-  profileImageUrl?: string;
-  name?: string;
-  likesCount?: number;
-  isLiked?: boolean;
-};
+import SearchBar from '../components/SearchBar';
 
 export interface ImagesScreenState {
   images: Array<PhotoModel>;
   imageApi: ImageApiInterface<PhotoDataResponse>;
 }
 
-const ImagesScreen = () => {
-  const [state, setState] = useState({images: [] as PhotoModel[]});
+const ImagesScreen: React.FC<{}> = () => {
+  const dispatch = useAppDispatch();
+  const photos = useAppSelector(state => state.photos.items);
+  const [searchValue, setSearchValue] = useState('');
   const refreshing = false;
-  const imageApi = new ImageApi<PhotoDataResponse>();
+
+  useEffect(() => {
+    dispatch(fetchPhotos());
+  }, [dispatch]);
 
   const renderItem = (itemInfo: ListRenderItemInfo<PhotoModel>) => {
     const {item} = itemInfo;
@@ -40,11 +48,12 @@ const ImagesScreen = () => {
             profileUrl: item.profileImageUrl,
             authorName: item.name,
           }}
-        />
-        <ImageCellFooter
-          likesCounter={item.likesCount}
-          isLiked={item.isLiked}
-          onPress={() => (item.isLiked ? unlikeCallback(id) : likeCallback(id))}
+          footerProps={{
+            likesCounter: item.likesCount,
+            isLiked: item.isLiked,
+            onPress: () =>
+              item.isLiked ? unlikeCallback(id) : likeCallback(id),
+          }}
         />
       </View>
     );
@@ -63,78 +72,20 @@ const ImagesScreen = () => {
   };
 
   const likeCallback = (id: string) => {
-    imageApi
-      .likePhoto(id)
-      .then((value: PhotoLikeResponse) => {
-        const updatedImages = state.images.map(user => {
-          if (user.id === id) {
-            return (user = {
-              id: user.id,
-              imageUrl: user.imageUrl,
-              name: user.name,
-              profileImageUrl: user.profileImageUrl,
-              isLiked: value.photo?.liked_by_user,
-              likesCount: value.photo?.likes,
-            });
-          } else {
-            return user;
-          }
-        });
-
-        setState({images: updatedImages});
-      })
-      .catch(error => console.log(error));
+    return dispatch(fetchLike([id]));
   };
 
   const unlikeCallback = (id: string) => {
-    imageApi
-      .unlikePhoto(id)
-      .then((value: PhotoLikeResponse) => {
-        const updatedImages = state.images.map(user => {
-          if (user.id === id) {
-            return (user = {
-              id: user.id,
-              imageUrl: user.imageUrl,
-              name: user.name,
-              profileImageUrl: user.profileImageUrl,
-              isLiked: value.photo?.liked_by_user,
-              likesCount: value.photo?.likes,
-            });
-          } else {
-            return user;
-          }
-        });
-
-        setState({images: updatedImages});
-      })
-      .catch(error => console.log(error));
+    return dispatch(fetchUnlike([id]));
   };
 
-  useEffect(() => {
-    const fetchData = () => {
-      imageApi
-        .fetchPhotos()
-        .then((values: Array<PhotoDataResponse>) => {
-          setState({
-            images: values.map((value: PhotoDataResponse) => ({
-              id: value.id,
-              imageUrl: value.urls?.small,
-              isLiked: value.liked_by_user,
-              name: value.user?.name,
-              likesCount: value.likes,
-              profileImageUrl: value.user?.profile_image?.small,
-            })),
-          });
-        })
-        .catch(error => {
-          console.log('fetch error: ', error);
-        });
-    };
+  const searchCallback = (
+    event: NativeSyntheticEvent<TextInputChangeEventData>,
+  ) => {
+    const searchQuery = event.nativeEvent.text;
 
-    fetchData();
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    dispatch(fetchSearchData(searchQuery));
+  };
 
   const childrenKeys = () => {
     return Math.random().toString(36).substr(2, 9);
@@ -145,12 +96,19 @@ const ImagesScreen = () => {
       containerStyle={ImagesScreenstyle.additionalView}
       formBackgroundColor={'darkslategrey'}
       prependedChildren={[
-        <Header title="Images" isEditable={false} key={childrenKeys()} />,
+        <Header title=" Images" isEditable={false} key={childrenKeys()} />,
+        <SearchBar
+          placeholder={'search photo'}
+          value={searchValue}
+          onChangeText={text => setSearchValue(text)}
+          onChange={searchCallback}
+          key={childrenKeys()}
+        />,
       ]}>
       <FlatList<PhotoModel>
         keyExtractor={(_, index) => String(index)}
         style={ImagesScreenstyle.flatList}
-        data={state.images}
+        data={photos}
         renderItem={renderItem}
         refreshing={refreshing}
         ListEmptyComponent={ListEmptyComponent}

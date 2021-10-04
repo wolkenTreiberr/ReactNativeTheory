@@ -12,6 +12,7 @@
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.15.8",
     "@react-native-community/checkbox": "^0.5.8",
+    "@reduxjs/toolkit": "^1.6.1",
     "formik": "^2.2.9",
     "immer": "^9.0.6",
     "node-fetch": "^3.0.0",
@@ -23,7 +24,10 @@
     "react-native-spacing-system": "^2.0.0-rc.0",
     "react-native-swipe-list-view": "^3.2.9",
     "react-native-vector-icons": "^8.1.0",
+    "react-redux": "^7.2.5",
+    "redux": "^4.1.1",
     "redux-flipper": "^2.0.1",
+    "redux-thunk": "^2.3.0",
     "unsplash-js": "^7.0.15",
     "yup": "^0.32.9"
   },

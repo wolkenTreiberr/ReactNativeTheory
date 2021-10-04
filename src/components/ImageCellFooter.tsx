@@ -3,11 +3,11 @@ import {Image, View, Text, TouchableOpacity} from 'react-native';
 import {Queue} from 'react-native-spacing-system';
 import ImageCellFooterstyles from './ImageCellFooterstyles';
 
-interface ImageCellFooterProps {
+export type ImageCellFooterProps = {
   likesCounter?: number;
   isLiked?: boolean;
   onPress: () => void;
-}
+};
 
 const ImageCellFooter = (props: ImageCellFooterProps) => {
   return (

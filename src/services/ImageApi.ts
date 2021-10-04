@@ -1,55 +1,47 @@
-const baseUrl = 'https://api.unsplash.com';
-const photos = '/photos';
-const clientId = '8yscgpqKnOpuLMXmZ5loknhKeLM3i8UKT0be71pLFCw';
-const token = 'UCeMiPKh-3s_9gkMwZicdX-cVYd0apZFYgk39HtiNDo';
+import {RequestType} from '../hooks/enums';
+import {request} from './apiManager';
+import {PhotoDataResponse} from './PhotoDataResponse';
+import {PhotoLikeResponse} from './PhotoLikeResponse';
+import {SearchDataResponse} from './SearchDataResponse';
 
 export interface ImageApiInterface<T> {
   fetchPhotos(): Promise<Array<T>>;
+  searchPhotos(urlParams: object): Promise<T>;
+  likePhoto(id: string[]): Promise<T>;
+  unlikePhoto(id: string[]): Promise<T>;
 }
 
 export class ImageApi<T> implements ImageApiInterface<T> {
-  private async init(
-    path: string = photos,
-    mehtod: string = 'GET',
-  ): Promise<Response> {
-    return fetch(baseUrl + path + `?client_id=${clientId}`, {
-      method: mehtod,
-      headers: {
-        Accept: 'application/json',
-      },
-    });
-  }
+  private token: string = 'UCeMiPKh-3s_9gkMwZicdX-cVYd0apZFYgk39HtiNDo';
 
   async fetchPhotos(): Promise<Array<T>> {
-    return this.init()
-      .then(response => response.json())
-      .then(data => {
-        return data as T[];
-      });
-  }
-
-  private async authentication(id: string, method: string): Promise<Response> {
-    return fetch(`${baseUrl}/photos/${id}/like`, {
-      method: method,
-      headers: {
-        Accept: 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
+    return request<Array<T>>(RequestType.fetchPhotos, {
+      token: this.token,
     });
   }
 
-  async likePhoto(id: string): Promise<T> {
-    return this.authentication(id, 'POST')
-      .then(response => response.json())
-      .then(data => {
-        return data as T;
-      });
+  async likePhoto(id: string[]): Promise<T> {
+    return request<T>(RequestType.likePhoto, {
+      token: this.token,
+      params: id,
+    });
   }
-  async unlikePhoto(id: string): Promise<T> {
-    return this.authentication(id, 'DELETE')
-      .then(response => response.json())
-      .then(data => {
-        return data as T;
-      });
+
+  async unlikePhoto(id: string[]): Promise<T> {
+    return request<T>(RequestType.unlikePhoto, {
+      token: this.token,
+      params: id,
+    });
+  }
+
+  async searchPhotos(urlParams: object): Promise<T> {
+    return request<T>(RequestType.searchPhotos, {
+      token: this.token,
+      urlParams,
+    });
   }
 }
+
+export const imageApi = new ImageApi<PhotoDataResponse>();
+export const likeImageApi = new ImageApi<PhotoLikeResponse>();
+export const searchImageApi = new ImageApi<SearchDataResponse>();

@@ -1,12 +1,14 @@
 import React from 'react';
 import {Image, View} from 'react-native';
 import {Inset} from 'react-native-spacing-system';
+import ImageCellFooter, {ImageCellFooterProps} from './ImageCellFooter';
 import ImageCellHeader, {ImageCellHeaderProps} from './ImageCellHeader';
 import ImageCellstyles from './ImageCellstyles';
 
 export type ImageCellProps = {
   imageUrl?: string;
   headerProps: ImageCellHeaderProps;
+  footerProps: ImageCellFooterProps;
 };
 
 const ImageCell: React.FC<ImageCellProps> = (props: ImageCellProps) => {
@@ -20,6 +22,9 @@ const ImageCell: React.FC<ImageCellProps> = (props: ImageCellProps) => {
         resizeMode={'contain'}
         source={{uri: props.imageUrl}}
       />
+      <Inset horizontal={5}>
+        <ImageCellFooter {...props.footerProps} />
+      </Inset>
     </View>
   );
 };
