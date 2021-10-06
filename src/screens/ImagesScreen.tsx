@@ -6,7 +6,7 @@ import BackgroundForm from '../components/BackgroundForm';
 import ImageCell from '../components/ImageCell';
 import ImageCellFooter from '../components/ImageCellFooter';
 import ImagesScreenstyle from './ImagesScreenstyles';
-import {ImageApiInterface, ImageApi} from '../services/ImageApi';
+import {imageApi} from '../services/ImageApi';
 import {PhotoDataResponse} from '../services/ModelApi';
 import {PhotoLikeResponse} from '../services/PhotoLikeResponse';
 
@@ -19,36 +19,9 @@ type PhotoModel = {
   isLiked?: boolean;
 };
 
-export interface ImagesScreenState {
-  images: Array<PhotoModel>;
-  imageApi: ImageApiInterface<PhotoDataResponse>;
-}
-
 const ImagesScreen = () => {
   const [state, setState] = useState({images: [] as PhotoModel[]});
   const refreshing = false;
-  const imageApi = new ImageApi<PhotoDataResponse>();
-
-  const renderItem = (itemInfo: ListRenderItemInfo<PhotoModel>) => {
-    const {item} = itemInfo;
-    const id = item.id;
-    return (
-      <View style={ImagesScreenstyle.imageContainer}>
-        <ImageCell
-          imageUrl={item.imageUrl}
-          headerProps={{
-            profileUrl: item.profileImageUrl,
-            authorName: item.name,
-          }}
-        />
-        <ImageCellFooter
-          likesCounter={item.likesCount}
-          isLiked={item.isLiked}
-          onPress={() => (item.isLiked ? unlikeCallback(id) : likeCallback(id))}
-        />
-      </View>
-    );
-  };
 
   const ListEmptyComponent = () => {
     return (
@@ -110,6 +83,27 @@ const ImagesScreen = () => {
       .catch(error => console.log(error));
   };
 
+  const renderItem = (itemInfo: ListRenderItemInfo<PhotoModel>) => {
+    const {item} = itemInfo;
+    const id = item.id;
+    return (
+      <View style={ImagesScreenstyle.imageContainer}>
+        <ImageCell
+          imageUrl={item.imageUrl}
+          headerProps={{
+            profileUrl: item.profileImageUrl,
+            authorName: item.name,
+          }}
+        />
+        <ImageCellFooter
+          likesCounter={item.likesCount}
+          isLiked={item.isLiked}
+          onPress={() => (item.isLiked ? unlikeCallback(id) : likeCallback(id))}
+        />
+      </View>
+    );
+  };
+
   useEffect(() => {
     const fetchData = () => {
       imageApi
@@ -132,8 +126,6 @@ const ImagesScreen = () => {
     };
 
     fetchData();
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const childrenKeys = () => {
