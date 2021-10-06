@@ -181,11 +181,15 @@ function AddPeopleScreen() {
     );
   }, [search, people]);
 
+  const childrenKeys = () => {
+    return Math.random().toString(36).substr(2, 9);
+  };
+
   return (
     <BackgroundForm
       containerStyle={AddPeopleScreenstyles.sectionView}
       prependedChildren={[
-        <Header title="Add people" isEditable={false} />,
+        <Header title="Add people" isEditable={false} key={childrenKeys()} />,
         <SearchBar
           value={search}
           placeholder={'Search people'}

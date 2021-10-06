@@ -76,11 +76,16 @@ const ProfileScreen = () => {
     );
   };
 
+  const childrenKeys = () => {
+    return Math.random().toString(36).substr(2, 9);
+  };
+
   return (
     <BackgroundForm
       containerStyle={ProfileScreenstyles.viewContainer}
       prependedChildren={[
         <Header
+          key={childrenKeys()}
           title="My profile"
           isEditable={true}
           isInEditMode={isInEditMode}
